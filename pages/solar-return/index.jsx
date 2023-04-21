@@ -1,0 +1,70 @@
+import { Button } from "@/components/cards/calculatorCard";
+import useForm from "@/components/context/useForm";
+import Form2 from "@/components/form/form";
+import React, { useEffect, useState } from "react";
+
+export const initialvalue = {
+  name: "",
+  birth: "",
+  day: "",
+  month: "",
+  year: "",
+  min: "",
+  hour: "",
+  gender: "male",
+  tzone: 5.5,
+  place: "",
+  country: "India",
+  email: "",
+};
+
+const formKeys = {
+  date: "My date of birth is",
+  place: "I was born in",
+  email: "Enter Your Email",
+  name: "My name is",
+  current: "My current location",
+  button: "Create free Natal Chart",
+};
+
+export default function SolarReturn() {
+  const { solar, adduserdata, deleteuserdata } = useForm();
+  const [userData, setUserdata] = useState({});
+
+  useEffect(() => {
+    if (solar) {
+      setUserdata(solar);
+    }
+  }, [solar]);
+
+  const handleData = (data) => {
+    adduserdata({ natal: data });
+  };
+
+  const handleForm = (val) => {
+    deleteuserdata({ [val]: null });
+    setUserdata({});
+  };
+
+  return (
+    <div className="px-5 bg-gradient-to-tl dark:from-transparent dark:to-transparent from-[#EDF1F4]/20 to-[#C3CBDC]/20 md:py-24 py-14 flex flex-col gap-14 items-center">
+      <Button url="/" />
+      {Object.keys(userData).length > 0 ? (
+        ""
+      ) : (
+        <>
+          <div className=" text-center">
+            <h1 className="md:text-5xl font-bold text-4xl dark:text-white text-zinc-800">
+              Solar Return Chart
+            </h1>
+          </div>
+          <Form2
+            passData={handleData}
+            formKey={formKeys}
+            initialValues={initialvalue}
+          />
+        </>
+      )}
+    </div>
+  );
+}

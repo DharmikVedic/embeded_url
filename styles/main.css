@@ -1,0 +1,65 @@
+button,
+select,
+label {
+    appearance: none;
+    background: transparent;
+}
+
+.inputbox2 {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+
+.inputbox {
+    width: 100%;
+}
+
+.inputbox label,
+.inputbox2 label {
+    /*width: 100%;*/
+    font-weight: 400;
+}
+
+
+.input2 {
+    outline: none;
+    width: 100%;
+    border-bottom: 1px solid #9ca3af;
+    padding: 10px 5px;
+    background: transparent;
+}
+
+.input2:focus {
+    border-color: #eab308;
+}
+
+.input2:focus-within {
+    border-color: #eab308;
+}
+
+.input {
+    outline: none;
+    width: 100%;
+    border: 1px solid #9ca3af;
+    padding: 10px 10px;
+    border-radius: 3px;
+}
+
+.input:hover,
+.input:focus {
+    border-color: #f97316;
+}
+
+.form-control {
+    background-color: transparent;
+    /*border: 2px solid #a3a3a3;*/
+    border-radius: 7px;
+    color: currentColor;
+    padding: 8px 5px;
+    width: 100%;
+}
+
+.form-control:focus {
+    outline: none;
+}
