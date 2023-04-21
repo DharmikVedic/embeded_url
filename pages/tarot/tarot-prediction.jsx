@@ -122,19 +122,25 @@ export default function TarotPrediction() {
                 )}
               </div>
             ) : (
-              <div className=" max-w-5xl divide-y dark:divide-zinc-500 divide-zinc-300 mx-auto flex flex-col">
-                <TarotResponseCard
-                  data={response.love}
-                  number={prediction.love}
-                />
-                <TarotResponseCard
-                  data={response.finance}
-                  number={prediction.career}
-                />
-                <TarotResponseCard
-                  data={response.career}
-                  number={prediction.finance}
-                />
+              <div>
+                <h2 className="md:text-5xl font-bold text-4xl text-center dark:text-white">
+                  Tarot Prediction
+                </h2>
+
+                <div className=" max-w-5xl divide-y dark:divide-zinc-500 divide-zinc-300 mx-auto flex flex-col">
+                  <TarotResponseCard
+                    data={response.love}
+                    number={prediction.love}
+                  />
+                  <TarotResponseCard
+                    data={response.finance}
+                    number={prediction.career}
+                  />
+                  <TarotResponseCard
+                    data={response.career}
+                    number={prediction.finance}
+                  />
+                </div>
               </div>
             )}
           </>

@@ -58,6 +58,12 @@ export default function NatalChart() {
             <h1 className="md:text-5xl font-bold text-4xl dark:text-white text-zinc-800">
               Natal Chart
             </h1>
+            <p className="dark:text-zinc-300 text-zinc-700 md:text-lg mt-5 max-w-3xl">
+              Calculate the position of the planets at your birth and unlock the
+              hidden patterns and potentials that shape your life's journey.
+              Gain valuable insight into your purpose, personality, and
+              opportunities for growth and transformation today
+            </p>
           </div>
           <Form2
             passData={handleData}
