@@ -23,7 +23,7 @@ import {
 import React, { useEffect, useState } from "react";
 import { Loader2 } from "@/components/utils/loader";
 import { FetchApi } from "@/components/utils/fetchapi";
-import HoroscopeTab, { TabUI } from "@/components/tabui/horoscopeTab";
+import { TabUI } from "@/components/tabui/horoscopeTab";
 
 export default function BirthReport({ userdata, handleForm }) {
   const [detail, setdetail] = useState({
