@@ -1,57 +1,69 @@
-// Card.jsx
+// star.js
 import React, { Component } from "react";
 
-class Card extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isFlipped: false,
-    };
+class Star {
+  constructor(parent) {
+    this.parent = parent;
+    this.star = document.createElement("div");
+    this.init();
   }
 
-  handleClick = () => {
-    this.setState((prevState) => ({ isFlipped: !prevState.isFlipped }));
-  };
+  init() {
+    const size = Math.random() * 4;
+    const left = Math.random() * 100;
+    const top = Math.random() * 100;
+    const animationDuration = Math.random() * 10 + 2;
+    this.star.style.position = "absolute";
+    this.star.style.width = `${size}px`;
+    this.star.style.height = `${size}px`;
+    this.star.style.left = `${left}%`;
+    this.star.style.top = `${top}%`;
+    this.star.style.animationDuration = `${animationDuration}s`;
+    this.star.style.backgroundColor = "gold";
+    this.star.style.borderRadius = "50%";
+    this.star.style.boxShadow = "0 0 2px rgba(0, 0, 0, 0.5)";
+    this.star.style.animation = `sparkle ${animationDuration}s linear infinite`;
+    this.parent.appendChild(this.star);
+  }
+}
+
+class App extends Component {
+  componentDidMount() {
+    for (let i = 0; i < 50; i++) {
+      new Star(this.refs.background);
+    }
+  }
 
   render() {
-    const { frontContent, backContent } = this.props;
-    const { isFlipped } = this.state;
-
     return (
       <>
         <style jsx>
           {`
-            .flip-card.flipped .flip-card-inner {
-              transform: rotateY(180deg);
+            @keyframes sparkle {
+              0%,
+              100% {
+                opacity: 0;
+                transform: scale(0);
+              }
+              50% {
+                opacity: 1;
+                transform: scale(1);
+              }
             }
           `}
         </style>
         <div
-          className={`flip-card ${isFlipped ? "flipped" : ""}`}
-          onClick={this.handleClick}
-        >
-          <div className="flip-card-inner">
-            <div className="flip-card-front">
-              {" "}
-              <img
-                className={`w-full border-2 duration-100 ease-in group-hover:shadow-2xl  group-hover:shadow-white/60 group-hover:-translate-y-2`}
-                src={"/imgs/tarotcard.png"}
-                alt="tarot"
-              />
-            </div>
-            <div className="flip-card-back">
-              {" "}
-              <img
-                className={`w-full border-2 duration-100 ease-in group-hover:shadow-2xl  group-hover:shadow-white/60 group-hover:-translate-y-2`}
-                src={"/imgs/34.png"}
-                alt="tarot"
-              />
-            </div>
-          </div>
-        </div>
+          ref="background"
+          style={{
+            position: "fixed",
+            width: "100vw",
+            height: "100vh",
+            overflow: "hidden",
+          }}
+        ></div>
       </>
     );
   }
 }
 
-export default Card;
+export default App;

@@ -78,7 +78,7 @@ export function TabUI({ tabs, active, handleTime }) {
               : "border-transparent"
           }`}
         >
-          <h6 className="cursor-pointer md:text-base text-sm capitalize">
+          <h6 className="cursor-pointer md:text-lg text-[15px] capitalize">
             {item}
           </h6>
         </button>

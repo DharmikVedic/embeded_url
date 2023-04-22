@@ -1,4 +1,5 @@
 import SolarReturnReport from "@/components/calculator/solrReturnResponse";
+import Transitreport from "@/components/calculator/transitReport";
 import { Button } from "@/components/cards/calculatorCard";
 import useForm from "@/components/context/useForm";
 import Form2 from "@/components/form/form";
@@ -10,13 +11,13 @@ const formKeys = {
   email: "Enter Your Email",
   name: "My name is",
   current: "My current location",
-  button: "Create free Solar Return Chart",
+  button: "Create free Transit Report",
   solar_year: "Select Solar Year",
 };
 
-export default function SolarReturn() {
+export default function TransitChart() {
   const date = new Date();
-  const { solar, adduserdata, deleteuserdata } = useForm();
+  const { transit, adduserdata, deleteuserdata } = useForm();
   const [userData, setUserdata] = useState({});
 
   const initialvalue = {
@@ -34,18 +35,16 @@ export default function SolarReturn() {
     current_lat: "",
     current_lon: "",
     current_tzone: "",
-    solar_year: date.getFullYear(),
   };
 
   useEffect(() => {
-    if (solar) {
-      setUserdata(solar);
+    if (transit) {
+      setUserdata(transit);
     }
-  }, [solar]);
+  }, [transit]);
 
   const handleData = (data) => {
-    //console.log(data);
-    adduserdata({ solar: data });
+    adduserdata({ transit: data });
   };
 
   const handleForm = (val) => {
@@ -57,19 +56,22 @@ export default function SolarReturn() {
     <div className="px-5 bg-gradient-to-tl dark:from-transparent dark:to-transparent from-[#EDF1F4]/20 to-[#C3CBDC]/20 md:py-24 py-20 flex flex-col gap-14 items-center">
       <Button url="/" />
       {Object.keys(userData).length > 0 ? (
-        <SolarReturnReport handleForm={handleForm} userdata={userData} />
+        <Transitreport handleForm={handleForm} userdata={userData} />
       ) : (
         <>
           <div className=" text-center flex flex-col gap-5">
             <h1 className="md:text-5xl font-bold text-4xl dark:text-white text-zinc-800">
-              Solar Return Chart
+              Transit Chart Calculator
             </h1>
-            <p className="md:text-lg dark:text-zinc-300 text-zinc-600">
-              Your Birthday Forecast: Get Ready for an Amazing Year Ahead!
+            <p className="md:text-lg max-w-3xl mx-auto dark:text-zinc-300 text-zinc-600">
+              Navigate the cosmic currents and gain valuable insight into the
+              current astrological climate and its impact on your life's
+              journey. Make the most of opportunities and know the best timing
+              for important events with confidence and clarity today
             </p>
           </div>
           <Form2
-            solar={true}
+            transit={true}
             passData={handleData}
             formKey={formKeys}
             initialValues={initialvalue}

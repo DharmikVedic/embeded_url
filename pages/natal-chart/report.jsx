@@ -571,10 +571,30 @@ export default function BirthReport({ userdata, handleForm }) {
                 )}
                 <>
                   {active === "Planets" && (
-                    <PlanetCard2 response={detail.planets} />
+                    <PlanetCard2
+                      title="Natal Planets"
+                      desc="The planets represent energies and cosmic forces that can manifest in
+          different ways. They are like the actors in a play. The signs describe
+          the ways in which these planetary energies are used. They show the
+          motivation and the roles the different actors play. As with everything
+          in the material world, these energies can and usually do operate in
+          two directions, the positive and negative."
+                      response={detail.planets}
+                    />
                   )}
                 </>
-                {active === "Houses" && <PlanetHouse detail={detail.houses} />}
+                {active === "Houses" && (
+                  <PlanetHouse
+                    title="Natal Houses"
+                    desc=" The planets represent energies and cosmic forces that can be utilized
+          in various ways. They are like the actors in a play. Houses represent
+          the different spheres of life where these energies can be and are
+          brought to bear, for better or for worse. If the planets are the
+          actors in a play, then the houses represent the various settings in
+          which the actors play out their roles (signs)."
+                    detail={detail.houses}
+                  />
+                )}
                 {active === "Aspects" && (
                   <div className="md:pb-20 pb-14">
                     <AspectCard

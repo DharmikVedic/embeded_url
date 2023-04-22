@@ -33,7 +33,7 @@ export default function HomePage() {
         `}
       </style>
       {/* #2C2B46 */}
-      <div className="md:py-24 star px-5 py-14 flex flex-col gap-20">
+      <div className="md:py-24 star px-5 py-20 flex flex-col gap-14 md:gap-20">
         <div className="flex flex-col gap-5 max-w-4xl mx-auto text-center">
           <h1
             style={{ lineHeight: 1.1 }}
@@ -63,7 +63,7 @@ export default function HomePage() {
           <IconCard
             bg="bg-gradient-to-br from-lime-100 to-green-300"
             text="Personalised Transit"
-            link="/"
+            link="/personalised-transit"
             desc="Navigate the cosmic currents and gain valuable insight into the current astrological climate and its impact on your life's journey. Make the most of opportunities and know the best timing for important events with confidence and clarity today"
             img={svgIcon.transit}
           />
@@ -77,7 +77,7 @@ export default function HomePage() {
           <IconCard
             bg="bg-gradient-to-br from-pink-100 to-rose-200"
             text="Synastry Chart"
-            link="/"
+            link="/synastry-chart"
             desc="Explore the unique astrological aspects that define your bond and gain valuable insights into how to navigate your relationship with ease. Don't leave your cosmic compatibility to chance - try the Synastry Calculator today! "
             img={svgIcon.synastry}
           />

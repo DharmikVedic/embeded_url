@@ -1,7 +1,6 @@
-import Link from "next/link";
 import { forwardRef } from "react";
 
-import { PlanetColor, colorPlanet, colortext, typeTextColor } from "./color";
+import { PlanetColor, colorPlanet, typeTextColor } from "./color";
 import {
   ampmconvertor,
   convert24hoursto12hours,
@@ -10,7 +9,6 @@ import {
   Time,
 } from "../utils/date";
 import { getDMS, Sign } from "../utils/gtmSign";
-import { useRouter } from "next/router";
 
 export const FetureCard = (props) => {
   return (
@@ -190,250 +188,34 @@ l-7 52 57 0 56 0 0 -49z m146 -3 c-4 -29 -8 -53 -9 -54 -1 0 -23 1 -49 4 l-48
   );
 }
 
-export function TransitProfileCard({ userDetail }) {
-  const router = useRouter();
-
-  return (
-    <div className="flex flex-col  gap-4">
-      <h5 className="md:text-lg text-white uppercase font-cera_medium border-b border-light_bg/50 pb-2  ">
-        Your birth details
-      </h5>
-      <div className=" w-full relative  md:max-w-sm flex flex-col gap-4">
-        {userDetail !== null && (
-          <>
-            <p className="font-cera_medium  text-para">{userDetail?.name}</p>
-            <div className="flex flex-col gap-4">
-              <p className="flex items-center gap-3 text-para">
-                <svg
-                  version="1.0"
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-5 h-5 mt-[6px]  fill-para"
-                  viewBox="0 0 64.000000 64.000000"
-                  preserveAspectRatio="xMidYMid meet"
-                >
-                  <g
-                    transform="translate(0.000000,64.000000) scale(0.100000,-0.100000)"
-                    stroke="none"
-                  >
-                    <path
-                      d="M100 615 c0 -20 -5 -25 -25 -25 -14 0 -37 -11 -50 -25 l-25 -24 0
--246 0 -246 25 -24 24 -25 271 0 271 0 24 25 25 24 0 246 0 246 -25 24 c-13
-14 -36 25 -50 25 -20 0 -25 5 -25 25 0 21 -5 25 -30 25 -25 0 -30 -4 -30 -25
-l0 -25 -160 0 -160 0 0 25 c0 21 -5 25 -30 25 -25 0 -30 -4 -30 -25z m0 -100
-c0 -21 5 -25 30 -25 25 0 30 4 30 25 l0 25 160 0 160 0 0 -25 c0 -21 5 -25 30
--25 26 0 30 4 30 26 0 21 4 25 22 22 19 -2 24 -10 26 -40 l3 -38 -270 0 -271
-0 0 33 c0 38 6 47 32 47 13 0 18 -7 18 -25z m488 -287 l-3 -173 -265 0 -265 0
--3 173 -2 172 270 0 270 0 -2 -172z"
-                    />
-                    <path
-                      d="M92 328 c2 -17 10 -23 28 -23 18 0 26 6 28 23 3 19 -1 22 -28 22 -27
-0 -31 -3 -28 -22z"
-                    />
-                    <path
-                      d="M192 328 c2 -17 10 -23 28 -23 18 0 26 6 28 23 3 19 -1 22 -28 22
--27 0 -31 -3 -28 -22z"
-                    />
-                    <path
-                      d="M292 328 c2 -17 10 -23 28 -23 18 0 26 6 28 23 3 19 -1 22 -28 22
--27 0 -31 -3 -28 -22z"
-                    />
-                    <path
-                      d="M392 328 c2 -17 10 -23 28 -23 18 0 26 6 28 23 3 19 -1 22 -28 22
--27 0 -31 -3 -28 -22z"
-                    />
-                    <path
-                      d="M492 328 c2 -17 10 -23 28 -23 18 0 26 6 28 23 3 19 -1 22 -28 22
--27 0 -31 -3 -28 -22z"
-                    />
-                    <path
-                      d="M92 228 c2 -17 10 -23 28 -23 18 0 26 6 28 23 3 19 -1 22 -28 22 -27
-0 -31 -3 -28 -22z"
-                    />
-                    <path
-                      d="M192 228 c2 -17 10 -23 28 -23 18 0 26 6 28 23 3 19 -1 22 -28 22
--27 0 -31 -3 -28 -22z"
-                    />
-                    <path
-                      d="M292 228 c2 -17 10 -23 28 -23 18 0 26 6 28 23 3 19 -1 22 -28 22
--27 0 -31 -3 -28 -22z"
-                    />
-                    <path
-                      d="M392 228 c2 -17 10 -23 28 -23 18 0 26 6 28 23 3 19 -1 22 -28 22
--27 0 -31 -3 -28 -22z"
-                    />
-                    <path
-                      d="M492 228 c2 -17 10 -23 28 -23 18 0 26 6 28 23 3 19 -1 22 -28 22
--27 0 -31 -3 -28 -22z"
-                    />
-                    <path
-                      d="M92 128 c2 -17 10 -23 28 -23 18 0 26 6 28 23 3 19 -1 22 -28 22 -27
-0 -31 -3 -28 -22z"
-                    />
-                    <path
-                      d="M192 128 c2 -17 10 -23 28 -23 18 0 26 6 28 23 3 19 -1 22 -28 22
--27 0 -31 -3 -28 -22z"
-                    />
-                    <path
-                      d="M292 128 c2 -17 10 -23 28 -23 18 0 26 6 28 23 3 19 -1 22 -28 22
--27 0 -31 -3 -28 -22z"
-                    />
-                    <path
-                      d="M392 128 c2 -17 10 -23 28 -23 18 0 26 6 28 23 3 19 -1 22 -28 22
--27 0 -31 -3 -28 -22z"
-                    />
-                  </g>
-                </svg>
-                {date(userDetail?.month, userDetail?.day)}, {userDetail?.year}{" "}
-                at{" "}
-                {Time(
-                  convert24hoursto12hours(userDetail?.hour),
-                  userDetail?.min
-                )}{" "}
-                {ampmconvertor(userDetail?.hour)}
-                {/*March 03, 2000 at 07:45 AM*/}
-              </p>
-              <p className=" flex gap-3  items-start text-para">
-                <svg
-                  version="1.0"
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-5 h-5 fill-para"
-                  viewBox="0 0 64.000000 64.000000"
-                  preserveAspectRatio="xMidYMid meet"
-                >
-                  <g
-                    transform="translate(0.000000,64.000000) scale(0.100000,-0.100000)"
-                    stroke="none"
-                  >
-                    <path
-                      d="M223 622 c-109 -39 -178 -112 -210 -221 -29 -102 4 -228 82 -306 122
--121 328 -121 450 0 91 92 118 241 64 356 -69 146 -241 223 -386 171z m77 -86
-l0 -64 -42 5 c-24 3 -45 7 -47 9 -7 6 31 103 42 108 40 16 47 8 47 -58z m84
-58 c13 -5 53 -101 45 -108 -2 -2 -23 -6 -46 -9 l-43 -5 0 64 c0 66 5 73 44 58z
-m-200 -62 c-7 -32 -25 -40 -52 -23 -10 6 -6 15 19 35 17 15 33 25 35 23 2 -2
-1 -18 -2 -35z m320 -1 c18 -20 18 -20 -8 -27 -32 -8 -32 -8 -41 34 -6 31 -5
-33 12 24 10 -6 27 -19 37 -31z m-369 -63 c20 -9 25 -18 25 -47 0 -74 -6 -81
--67 -81 l-55 0 7 36 c9 49 36 104 51 104 7 0 25 -5 39 -12z m438 -22 c8 -19
-19 -50 22 -70 l7 -36 -55 0 c-61 0 -67 7 -67 81 0 27 5 38 23 47 37 18 53 13
-70 -22z m-307 -6 l34 0 0 -50 0 -50 -55 0 c-61 0 -61 0 -48 73 4 28 10 37 20
-33 8 -4 30 -6 49 -6z m178 -27 c12 -73 12 -73 -49 -73 l-55 0 0 49 0 50 43 4
-c23 2 45 4 48 5 4 1 9 -15 13 -35z m-290 -135 c3 -13 6 -39 6 -59 0 -29 -5
--38 -25 -47 -14 -7 -32 -12 -39 -12 -15 0 -42 55 -51 104 l-7 36 55 0 c48 0
-55 -3 61 -22z m146 -27 l0 -49 -47 -4 c-27 -3 -49 -4 -50 -4 -1 1 -5 25 -9 54
-l-7 52 57 0 56 0 0 -49z m146 -3 c-4 -29 -8 -53 -9 -54 -1 0 -23 1 -49 4 l-48
-4 0 49 0 49 56 0 57 0 -7 -52z m149 16 c-9 -49 -36 -104 -51 -104 -7 0 -25 5
--39 12 -20 9 -25 18 -25 47 0 74 6 81 67 81 l55 0 -7 -36z m-295 -159 c0 -55
--3 -65 -17 -65 -29 0 -42 13 -58 59 -20 59 -20 59 23 64 20 2 40 4 45 5 4 1 7
--27 7 -63z m129 49 c8 -7 -32 -103 -45 -108 -39 -15 -44 -8 -44 58 l0 64 43
--5 c23 -3 44 -7 46 -9z m-245 -46 c3 -17 4 -33 2 -35 -2 -2 -18 8 -35 23 -25
-20 -29 29 -19 35 27 17 45 9 52 -23z m324 23 c10 -6 6 -15 -19 -35 -17 -15
--33 -25 -35 -23 -2 2 -1 18 2 35 7 32 25 40 52 23z"
-                    />
-                  </g>
-                </svg>
-
-                {userDetail?.place}
-              </p>
-              <button
-                onClick={() => router.push("/transit-chart")}
-                className="hover:bg-zinc-800 absolute top-0 right-0 hover:text-white  text-zinc-200  p-1 rounded-full"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-4 w-4"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
-                  <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
-                </svg>
-              </button>
-            </div>
-          </>
-        )}
-      </div>
-    </div>
-  );
-}
-
 export const CustomInput = forwardRef(({ value, onClick }, ref) => (
   <button
     type={"button"}
     ref={ref}
     onClick={onClick}
-    className="border px-3  border-light_bg/50 flex  py-2.5 rounded text-para  sm:text-base text-base gap-3 w-full  justify-between  items-center "
+    className="border px-3  border-zinc-400 dark:border-zinc-500  flex  py-2.5 rounded text-zinc-700 dark:text-zinc-300   sm:text-base text-base gap-3 w-full  justify-between  items-center "
   >
     {value}
     <svg
+      className="w-5 h-5 fill-current"
       version="1.0"
+      viewBox="0 0 64 64"
       xmlns="http://www.w3.org/2000/svg"
-      className="w-5 h-5 fill-para"
-      viewBox="0 0 64.000000 64.000000"
-      preserveAspectRatio="xMidYMid meet"
     >
-      <g
-        transform="translate(0.000000,64.000000) scale(0.100000,-0.100000)"
-        stroke="none"
-      >
-        <path
-          d="M146 618 c-9 -12 -16 -28 -16 -35 0 -7 -10 -13 -22 -13 -30 -1 -55
--20 -68 -54 -13 -36 -13 -426 0 -462 20 -52 27 -53 280 -53 253 0 260 1 280
-53 13 36 13 426 0 462 -13 33 -38 53 -66 54 -16 0 -23 8 -27 30 -11 55 -87 50
--87 -6 0 -19 -5 -24 -24 -24 -18 0 -25 7 -29 30 -11 55 -87 50 -87 -6 0 -19
--5 -24 -25 -24 -18 0 -25 5 -25 18 0 23 -30 52 -53 52 -9 0 -23 -10 -31 -22z
-m54 -68 c0 -53 -2 -60 -20 -60 -17 0 -20 7 -20 53 0 56 4 67 27 67 9 0 13 -17
-13 -60z m140 -1 c0 -52 -2 -60 -17 -57 -13 2 -19 15 -21 47 -4 52 2 71 23 71
-12 0 15 -13 15 -61z m140 3 c0 -32 -3 -62 -7 -65 -13 -14 -33 17 -33 53 0 48
-8 70 26 70 10 0 14 -15 14 -58z m80 -292 c0 -187 -1 -200 -19 -210 -12 -6
--101 -10 -221 -10 -120 0 -209 4 -221 10 -18 10 -19 23 -19 210 l0 200 240 0
-240 0 0 -200z"
-        />
-        <path
-          d="M120 345 c0 -34 1 -35 40 -35 39 0 40 1 40 35 0 34 -1 35 -40 35 -39
-0 -40 -1 -40 -35z"
-        />
-        <path
-          d="M230 345 c0 -34 1 -35 40 -35 39 0 40 1 40 35 0 34 -1 35 -40 35 -39
-0 -40 -1 -40 -35z"
-        />
-        <path
-          d="M330 345 c0 -34 1 -35 40 -35 39 0 40 1 40 35 0 34 -1 35 -40 35 -39
-0 -40 -1 -40 -35z"
-        />
-        <path
-          d="M440 345 c0 -34 1 -35 40 -35 39 0 40 1 40 35 0 34 -1 35 -40 35 -39
-0 -40 -1 -40 -35z"
-        />
-        <path
-          d="M120 255 c0 -34 1 -35 40 -35 39 0 40 1 40 35 0 34 -1 35 -40 35 -39
-0 -40 -1 -40 -35z"
-        />
-        <path
-          d="M230 256 c0 -35 1 -36 41 -36 39 0 40 1 37 33 -3 29 -6 32 -40 35
--37 3 -38 3 -38 -32z"
-        />
-        <path
-          d="M337 283 c-4 -3 -7 -19 -7 -35 0 -26 3 -28 40 -28 39 0 40 1 40 35 0
-33 -2 35 -33 35 -19 0 -37 -3 -40 -7z"
-        />
-        <path
-          d="M440 255 c0 -34 1 -35 40 -35 39 0 40 1 40 35 0 34 -1 35 -40 35 -39
-0 -40 -1 -40 -35z"
-        />
-        <path
-          d="M120 155 c0 -34 1 -35 40 -35 39 0 40 1 40 35 0 34 -1 35 -40 35 -39
-0 -40 -1 -40 -35z"
-        />
-        <path
-          d="M230 155 c0 -34 1 -35 40 -35 39 0 40 1 40 35 0 34 -1 35 -40 35 -39
-0 -40 -1 -40 -35z"
-        />
-        <path
-          d="M330 155 c0 -34 1 -35 40 -35 39 0 40 1 40 35 0 34 -1 35 -40 35 -39
-0 -40 -1 -40 -35z"
-        />
-        <path
-          d="M440 155 c0 -34 1 -35 40 -35 39 0 40 1 40 35 0 34 -1 35 -40 35 -39
-0 -40 -1 -40 -35z"
-        />
+      <g transform="translate(0 64) scale(.1 -.1)">
+        <path d="m146 618c-9-12-16-28-16-35s-10-13-22-13c-30-1-55-20-68-54-13-36-13-426 0-462 20-52 27-53 280-53s260 1 280 53c13 36 13 426 0 462-13 33-38 53-66 54-16 0-23 8-27 30-11 55-87 50-87-6 0-19-5-24-24-24-18 0-25 7-29 30-11 55-87 50-87-6 0-19-5-24-25-24-18 0-25 5-25 18 0 23-30 52-53 52-9 0-23-10-31-22zm54-68c0-53-2-60-20-60-17 0-20 7-20 53 0 56 4 67 27 67 9 0 13-17 13-60zm140-1c0-52-2-60-17-57-13 2-19 15-21 47-4 52 2 71 23 71 12 0 15-13 15-61zm140 3c0-32-3-62-7-65-13-14-33 17-33 53 0 48 8 70 26 70 10 0 14-15 14-58zm80-292c0-187-1-200-19-210-12-6-101-10-221-10s-209 4-221 10c-18 10-19 23-19 210v200h240 240v-200z" />
+        <path d="m120 345c0-34 1-35 40-35s40 1 40 35-1 35-40 35-40-1-40-35z" />
+        <path d="m230 345c0-34 1-35 40-35s40 1 40 35-1 35-40 35-40-1-40-35z" />
+        <path d="m330 345c0-34 1-35 40-35s40 1 40 35-1 35-40 35-40-1-40-35z" />
+        <path d="m440 345c0-34 1-35 40-35s40 1 40 35-1 35-40 35-40-1-40-35z" />
+        <path d="m120 255c0-34 1-35 40-35s40 1 40 35-1 35-40 35-40-1-40-35z" />
+        <path d="m230 256c0-35 1-36 41-36 39 0 40 1 37 33-3 29-6 32-40 35-37 3-38 3-38-32z" />
+        <path d="m337 283c-4-3-7-19-7-35 0-26 3-28 40-28 39 0 40 1 40 35 0 33-2 35-33 35-19 0-37-3-40-7z" />
+        <path d="m440 255c0-34 1-35 40-35s40 1 40 35-1 35-40 35-40-1-40-35z" />
+        <path d="m120 155c0-34 1-35 40-35s40 1 40 35-1 35-40 35-40-1-40-35z" />
+        <path d="m230 155c0-34 1-35 40-35s40 1 40 35-1 35-40 35-40-1-40-35z" />
+        <path d="m330 155c0-34 1-35 40-35s40 1 40 35-1 35-40 35-40-1-40-35z" />
+        <path d="m440 155c0-34 1-35 40-35s40 1 40 35-1 35-40 35-40-1-40-35z" />
       </g>
     </svg>
   </button>
@@ -448,7 +230,7 @@ export function AspectCard({ response, title, desc }) {
         </h2>
         <p className="dark:text-zinc-300 leading-6 rounded-md ">{desc}</p>
       </div>
-      <div className="grid grid-cols-1 border border-zinc-300 dark:border-zinc-500 md:grid-cols-2 max-w-4xl mx-auto w-full text-zinc-800 dark:text-white">
+      <div className="grid grid-cols-1 border border-t-0 border-zinc-400 dark:border-zinc-500 md:grid-cols-2 max-w-4xl mx-auto w-full text-zinc-800 dark:text-white">
         {response.map((item, i) => (
           <div
             key={i}
@@ -456,7 +238,7 @@ export function AspectCard({ response, title, desc }) {
               i % 2 == 0
                 ? "border-r-0 border-l-0 border-b-0"
                 : "border-b-0 md:border-l border-l-0 border-r-0"
-            }  border dark:border-zinc-500 border-zinc-300 flex w-full text-center px-5 py-3.5 items-center `}
+            }  border dark:border-zinc-500 border-zinc-400 flex w-full text-center px-5 py-3.5 items-center `}
           >
             <div
               className={`text-[15px] overflow-x-auto text-left items-center flex gap-2`}
@@ -480,7 +262,7 @@ export function AspectCard({ response, title, desc }) {
                 name={item.aspected_planet}
               />
               {item.aspected_planet}
-              <sapn className="text-xs whitespace-nowrap border border-current py-[2px] px-[5px] rounded-full  text-[#9DCDE4]/80">
+              <sapn className="text-xs whitespace-nowrap border border-current py-[2px] px-[5px] rounded-full text-blue-300  dark:text-[#9DCDE4]/80">
                 Orb {item.orb}
               </sapn>
             </div>
@@ -562,21 +344,14 @@ export const OneFeture2 = (props) => {
   );
 };
 
-export const PlanetHouse = ({ detail }) => {
+export const PlanetHouse = ({ detail, title, desc }) => {
   return (
     <section className="max-w-4xl mx-auto pb-20">
       <h2 className="font-semibold mb-5 md:text-4xl text-3xl  text-zinc-800 dark:text-white">
-        Natal Houses
+        {title}
       </h2>
       <div className="flex justify-between  flex-col gap-10">
-        <p className="dark:text-zinc-300 leading-6 rounded-md ">
-          The planets represent energies and cosmic forces that can be utilized
-          in various ways. They are like the actors in a play. Houses represent
-          the different spheres of life where these energies can be and are
-          brought to bear, for better or for worse. If the planets are the
-          actors in a play, then the houses represent the various settings in
-          which the actors play out their roles (signs).
-        </p>
+        <p className="dark:text-zinc-300 leading-6 rounded-md ">{desc}</p>
         <div>
           <div className="w-full gap-5 justify-between max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-2">
             {detail.map((item, i) => (

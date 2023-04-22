@@ -162,7 +162,7 @@ export function DifferentHoroscopeCard({ name, link, bg }) {
   return (
     <div
       onClick={() => router.push(link)}
-      className={`flex flex-col gap-5 cursor-pointer hover:scale-[1.04] duration-100 ease-in md:p-6 rounded-md ${bg}`}
+      className={`flex flex-col gap-5 cursor-pointer hover:scale-[1.04] duration-100 ease-in md:p-6 p-5 rounded-md ${bg}`}
     >
       <h3 className="md:text-[1.5rem] text-xl">{name}</h3>
       <div className="flex gap-3 items-center">

@@ -63,3 +63,6 @@ label {
 .form-control:focus {
     outline: none;
 }
+.show{
+    z-index:1;
+}

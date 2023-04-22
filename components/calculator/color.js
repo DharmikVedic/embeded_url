@@ -102,6 +102,8 @@ export const SignBgColor = {
   "south node": " bg-orange-200",
 };
 export const typeTextColor = {
+  "semi sextile": "text-lime-400",
+  "semi square": "text-pink-400",
   square: "text-sky-400",
   trine: "text-pink-400",
   sextile: "text-orange-400",
