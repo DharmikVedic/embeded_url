@@ -38,7 +38,6 @@ export default function NatalChart() {
   }, [natal]);
 
   const handleData = (data) => {
-    console.log(data);
     adduserdata({ natal: data });
   };
 

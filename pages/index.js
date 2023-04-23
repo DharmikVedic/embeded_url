@@ -2,6 +2,7 @@ import { IconCard, Numerology2, TarotCard } from "@/components/calculatorCard";
 import HoroscopeCards from "@/components/horoscope/horoscopeCards";
 import { svgIcon } from "@/components/svgicons";
 import React from "react";
+// import App from "./test";
 
 export default function HomePage() {
   return (
@@ -13,7 +14,7 @@ export default function HomePage() {
             position: relative;
           }
           .star:after {
-            background-image: url("/imgs/star.svg");
+            // background-image: url("/imgs/star.svg");
           }
           .star2:after {
             background-image: url("/imgs/star2.svg");
@@ -30,10 +31,26 @@ export default function HomePage() {
             width: 100%;
             height: 100%;
           }
+          @keyframes gradient {
+            0% {
+              background: linear-gradient(45deg, #add8e6, #90ee90);
+            }
+            50% {
+              background: linear-gradient(45deg, #90ee90, #add8e6);
+            }
+            100% {
+              background: linear-gradient(45deg, #add8e6, #90ee90);
+            }
+          }
+
+          .App {
+            animation: gradient 20s linear infinite;
+          }
         `}
       </style>
+      {/* <App /> */}
       {/* #2C2B46 */}
-      <div className="md:py-24 star px-5 py-20 flex flex-col gap-14 md:gap-20">
+      <div className="md:py-24 App star px-5 py-20 flex flex-col gap-14 md:gap-20">
         <div className="flex flex-col gap-5 max-w-4xl mx-auto text-center">
           <h1
             style={{ lineHeight: 1.1 }}
