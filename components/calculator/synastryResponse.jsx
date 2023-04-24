@@ -48,8 +48,6 @@ export default function SynastryReport({ userdata }) {
     setActive(val);
   };
 
-  console.log(active);
-
   return (
     <>
       <Head>
@@ -126,6 +124,7 @@ export default function SynastryReport({ userdata }) {
                 />
               </div>
             )}
+            {active == "PDF Download" && <Test2 />}
           </div>
         ) : (
           <Loader2 />
@@ -135,7 +134,7 @@ export default function SynastryReport({ userdata }) {
   );
 }
 
-const tabs = ["Positions", "Aspects"];
+const tabs = ["Positions", "Aspects", "PDF Download"];
 
 function reverseRequest(data, partner) {
   if (partner) {

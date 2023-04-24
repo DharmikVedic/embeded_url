@@ -12,6 +12,7 @@ module.exports = {
     extend: {
       colors: {
         c_yellow: "#FAE8BC",
+        c_light_dark: "#2C2B46",
       },
       fontFamily: {
         sans: ["janson_regular", ...defaultTheme.fontFamily.sans],

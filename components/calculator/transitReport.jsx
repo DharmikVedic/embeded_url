@@ -166,6 +166,7 @@ export default function Transitreport({ userdata, handleForm }) {
               </div>
             </div>
           )}
+          {active == "PDF Download" && <Test2 />}
         </div>
       ) : (
         <Loader2 />
@@ -174,7 +175,7 @@ export default function Transitreport({ userdata, handleForm }) {
   );
 }
 
-const tabs = ["Daily Transit"];
+const tabs = ["Daily Transit", "PDF Download"];
 
 export const OneFeture = (props) => {
   return (

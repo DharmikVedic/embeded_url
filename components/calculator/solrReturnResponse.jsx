@@ -285,6 +285,7 @@ l-7 52 57 0 56 0 0 -49z m146 -3 c-4 -29 -8 -53 -9 -54 -1 0 -23 1 -49 4 l-48
                     />
                   </div>
                 )}
+                {active == "PDF Download" && <Test2 />}
               </div>
             </>
           ) : (
@@ -296,4 +297,4 @@ l-7 52 57 0 56 0 0 -49z m146 -3 c-4 -29 -8 -53 -9 -54 -1 0 -23 1 -49 4 l-48
   );
 }
 
-const tabs = ["Planets", "Houses", "Aspects"];
+const tabs = ["Planets", "Houses", "Aspects", "PDF Download"];

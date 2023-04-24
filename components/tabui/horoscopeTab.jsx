@@ -15,7 +15,7 @@ export default function HoroscopeTab({ tabs, active, handleTime }) {
               : "border-transparent"
           }`}
         >
-          <h6 className="cursor-pointer uppercase">{item.name}</h6>
+          <h6 className="cursor-pointer capitalize text-[17px]">{item.name}</h6>
         </button>
       ))}
     </div>
@@ -32,7 +32,7 @@ export function HoroscopeTopBar({ sign, time, handleSign }) {
     daily: "Today",
     next: "Tommorrow",
     monthly: "Monthly",
-    weekly: "Weekly",
+    yesterday: "previous",
   };
 
   return (
@@ -53,7 +53,11 @@ export function HoroscopeTopBar({ sign, time, handleSign }) {
             >
               <option disabled>Change Sign</option>
               {signs.map((item, i) => (
-                <option key={i} value={item}>
+                <option
+                  key={i}
+                  value={item.toLowerCase()}
+                  className="capitalize"
+                >
                   {item}
                 </option>
               ))}

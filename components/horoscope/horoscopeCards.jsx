@@ -2,20 +2,21 @@ import React from "react";
 import { Sign } from "../utils/gtmSign";
 import { svgIcon } from "../svgicons";
 import { useRouter } from "next/router";
+import { SignBgColor1 } from "../calculator/color";
 
 export const signs = [
-  "aries",
-  "taurus",
-  "gemini",
-  "cancer",
-  "leo",
-  "virgo",
-  "libra",
-  "scorpio",
-  "sagittarius",
-  "capricorn",
-  "aquarius",
-  "pisces",
+  "Aries",
+  "Taurus",
+  "Gemini",
+  "Cancer",
+  "Leo",
+  "Virgo",
+  "Libra",
+  "Scorpio",
+  "Sagittarius",
+  "Capricorn",
+  "Aquarius",
+  "Pisces",
 ];
 
 export default function HoroscopeCards() {
@@ -183,6 +184,24 @@ export function DifferentHoroscopeCard({ name, link, bg }) {
             />
           </svg>
         </span>
+      </div>
+    </div>
+  );
+}
+
+export function YesterdayHoroscopeCard({ data }) {
+  return (
+    <div
+      className={`${
+        SignBgColor1[data.sun_sign.toLowerCase()]
+      } gap-5 md:p-10 p-5 rounded-[15px] flex flex-col items-start`}
+    >
+      <div className="flex flex-col gap-5">
+        <span className="max-w-max bg-white shadow-lg px-3 py-1 rounded-[15px] gap-2 font-semibold flex items-center">
+          <Sign size="text-[25px]" name={data.sun_sign} color="text-zinc-800" />
+          {data.sun_sign}
+        </span>
+        <p>{data.prediction}</p>
       </div>
     </div>
   );

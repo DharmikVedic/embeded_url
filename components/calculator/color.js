@@ -65,6 +65,22 @@ export const PlanetColor = {
   "north node": "text-red-400",
 };
 
+export const SignBgColor1 = {
+  taurus: "bg-orange-300",
+  capricorn: "bg-sky-300 ",
+  pisces: "bg-bg-300",
+  venus: "bg-yellow-300 ",
+  sagittarius: "bg-green-300",
+  aquarius: "bg-indigo-300",
+  gemini: "bg-amber-300 ",
+  virgo: "bg-orange-300 ",
+  libra: "bg-pink-300",
+  cancer: "bg-teal-300",
+  leo: "bg-cyan-300 ",
+  scorpio: "bg-fuchsia-300 ",
+  aries: "bg-red-300",
+};
+
 export const SignColor = {
   taurus: "text-orange-400",
   capricorn: "text-sky-400 ",

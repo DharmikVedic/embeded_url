@@ -1,5 +1,9 @@
 import { Button } from "@/components/cards/calculatorCard";
-import { CommonCardPage, signs } from "@/components/horoscope/horoscopeCards";
+import {
+  CommonCardPage,
+  YesterdayHoroscopeCard,
+  signs,
+} from "@/components/horoscope/horoscopeCards";
 import { MonthlyHoroscopeComponent } from "@/components/horoscope/monthlyHoroscope";
 import { WeeklyHoroscopeComponent } from "@/components/horoscope/weeklyHoroscope";
 import HoroscopeTab, { HoroscopeTopBar } from "@/components/tabui/horoscopeTab";
@@ -35,6 +39,7 @@ export default function HoroscopeSlug({ slug }) {
         daily: "sun_sign_prediction/daily/",
         next: "sun_sign_prediction/daily/next/",
         monthly: "horoscope_prediction/monthly/",
+        yesterday: "horoscope_prediction/daily/previous/",
       };
       const Dailyapi = { apiName: `${link[data[1]]}${data[0]}` };
       const Dailyresponse = await FetchApi({ ...Dailyapi });
@@ -70,32 +75,44 @@ export default function HoroscopeSlug({ slug }) {
               handleTime={handleTime}
               tabs={tab}
             />
-            {active.time === "monthly" ? (
+            {active.time === "yesterday" ? (
               <>
                 {Object.keys(response).length !== 0 && !loader ? (
-                  <MonthlyHoroscopeComponent data={response} />
+                  <YesterdayHoroscopeCard data={response} />
                 ) : (
                   <Loader2 />
                 )}
               </>
             ) : (
               <>
-                {active.time === "weekly" ? (
+                {active.time === "monthly" ? (
                   <>
                     {Object.keys(response).length !== 0 && !loader ? (
-                      <WeeklyHoroscopeComponent data={response} />
+                      <MonthlyHoroscopeComponent data={response} />
                     ) : (
                       <Loader2 />
                     )}
                   </>
                 ) : (
                   <>
-                    {Object.keys(response).length !== 0 && !loader ? (
-                      <div className="flex flex-col gap-10">
-                        <CommonCardPage data={response} />
-                      </div>
+                    {active.time === "weekly" ? (
+                      <>
+                        {Object.keys(response).length !== 0 && !loader ? (
+                          <WeeklyHoroscopeComponent data={response} />
+                        ) : (
+                          <Loader2 />
+                        )}
+                      </>
                     ) : (
-                      <Loader2 />
+                      <>
+                        {Object.keys(response).length !== 0 && !loader ? (
+                          <div className="flex flex-col gap-10">
+                            <CommonCardPage data={response} />
+                          </div>
+                        ) : (
+                          <Loader2 />
+                        )}
+                      </>
                     )}
                   </>
                 )}
@@ -143,7 +160,7 @@ export async function getStaticPaths() {
   let paths = [];
   signs.map((item) => {
     for (let i = 0; i < 4; i++) {
-      const slugname = ["daily", "next", "monthly"];
+      const slugname = ["daily", "next", "yesterday", "monthly"];
       const url = `${item.toLowerCase()}-${slugname[i]}-horoscope`;
       paths.push({ params: { slug: url } });
     }
@@ -168,6 +185,7 @@ function SplitLink(text) {
 
 const tab = [
   { name: "Today", link: "daily" },
+  { name: "Yesterday", link: "yesterday" },
   { name: "Tommorrow", link: "next" },
   { name: "Monthly", link: "monthly" },
 ];

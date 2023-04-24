@@ -1,25 +1,38 @@
 import { useRouter } from "next/router";
 import React from "react";
 
-export default function CalculatorCard() {
+export default function CalculatorCard({ title, desc, btn, link, style }) {
+  const router = useRouter();
   return (
-    <div
-      style={{
-        backgroundColor: "#6247aa",
-        backgroundImage: "linear-gradient(316deg, #6247aa 0%, #a594f9 74%)",
-      }}
-      className="md:p-7 p-5 rounded-[20px]"
-    >
-      <div className="flex flex-col gap-5 items-start">
-        <h2 className="font-extrabold md:text-2xl text-xl">
-          Free Birth Chart Natal Chart Report
-        </h2>
-        <p className="font-nunito md:text-lg">
-          Discover the key to your life path & personality
-        </p>
-        <button className="font-nunito font-semibold bg-white rounded-md py-2 px-10">
-          Calculate Yout Free Birth Chart
-        </button>
+    <div className={`p-[2px] ${style} rounded-[10px]`}>
+      <div
+        onClick={() => router.push(link)}
+        className="bg-white dark:bg-c_light_dark cursor-pointer md:p-6 group p-5 rounded-[10px]"
+      >
+        <div className="flex flex-col gap-3 items-start">
+          <h2 className="font-semibold dark:text-white text-zinc-800 md:text-2xl text-xl">
+            {title}
+          </h2>
+          <p className="font-nunito  dark:text-zinc-300 text-zinc-700  md:text-lg">
+            {desc}
+          </p>
+          <button className="ml-auto duration-100 ease-in font-semibold group-hover:bg-white group-hover:text-zinc-800 dark:text-white border border-current rounded-full p-2">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="w-4 h-4"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"
+              />
+            </svg>
+          </button>
+        </div>
       </div>
     </div>
   );

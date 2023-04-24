@@ -1,4 +1,5 @@
 import { IconCard, Numerology2, TarotCard } from "@/components/calculatorCard";
+import CalculatorCard from "@/components/cards/calculatorCard";
 import HoroscopeCards from "@/components/horoscope/horoscopeCards";
 import { svgIcon } from "@/components/svgicons";
 import React from "react";
@@ -14,7 +15,7 @@ export default function HomePage() {
             position: relative;
           }
           .star:after {
-            // background-image: url("/imgs/star.svg");
+            background-image: url("/imgs/star.svg");
           }
           .star2:after {
             background-image: url("/imgs/star2.svg");
@@ -31,26 +32,11 @@ export default function HomePage() {
             width: 100%;
             height: 100%;
           }
-          @keyframes gradient {
-            0% {
-              background: linear-gradient(45deg, #add8e6, #90ee90);
-            }
-            50% {
-              background: linear-gradient(45deg, #90ee90, #add8e6);
-            }
-            100% {
-              background: linear-gradient(45deg, #add8e6, #90ee90);
-            }
-          }
-
-          .App {
-            animation: gradient 20s linear infinite;
-          }
         `}
       </style>
       {/* <App /> */}
       {/* #2C2B46 */}
-      <div className="md:py-24 App star px-5 py-20 flex flex-col gap-14 md:gap-20">
+      <div className="md:py-24  star px-5 py-20 flex flex-col gap-14 md:gap-20">
         <div className="flex flex-col gap-5 max-w-4xl mx-auto text-center">
           <h1
             style={{ lineHeight: 1.1 }}
@@ -100,6 +86,41 @@ export default function HomePage() {
           />
         </div>
       </div>
+      <div className="px-5 star2 max-w-6xl mx-auto md:pb-14 pb-14 md:py-14">
+        <h2 className="font-semibold md:text-5xl text-center dark:text-white text-4xl">
+          Compatibility
+        </h2>
+        <p className="md:text-lg max-w-2xl mx-auto text-center mt-5 dark:text-zinc-300 text-zinc-700">
+          Test your compatibility and find out how your love and work
+          relationships rank with your partner, colleagues, friends and family.
+        </p>
+        <div className="max-w-5xl md:gap-x-14 gap-5 mx-auto grid grid-cols-1 sm:grid-cols-2 md:py-14 py-14">
+          <CalculatorCard
+            style="bg-gradient-to-br from-rose-400 to-transparent via-pink-400/60"
+            title="Romantic Personality"
+            link="/romantic-personality"
+            desc="Lorem Ipsum is simply dummy text of the printing and typesetting industry. "
+          />
+          <CalculatorCard
+            style="bg-gradient-to-bl from-green-400 to-transparent via-lime-400/60"
+            title="Karma Destiny"
+            link="/karma-destiny"
+            desc="Lorem Ipsum is simply dummy text of the printing and typesetting industry. "
+          />
+          <CalculatorCard
+            style="bg-gradient-to-br from-blue-400 to-transparent via-fuchsia-400/60"
+            title="Personality Report"
+            link="/personality-report"
+            desc="Lorem Ipsum is simply dummy text of the printing and typesetting industry. "
+          />
+          <CalculatorCard
+            style="bg-gradient-to-bl from-yellow-400 to-transparent via-pink-400/60"
+            title="Friendship Report"
+            link="/friendship-report"
+            desc="Lorem Ipsum is simply dummy text of the printing and typesetting industry. "
+          />
+        </div>
+      </div>
       <HoroscopeCards />
       <div className="px-5 star2 max-w-6xl mx-auto md:pb-24 py-14">
         <h2 className="font-semibold md:text-5xl text-center dark:text-white text-4xl">
@@ -110,11 +131,10 @@ export default function HomePage() {
           <Numerology2 />
         </div>
       </div>
-
-      {/* <div className="max-w-6xl grid grid-cols-2 gap-10 mx-auto px-5">
-          <CalculatorCard />
-          <CalculatorCard />
-        </div> */}
     </>
   );
 }
+
+// function CalculatorCard() {
+
+// }

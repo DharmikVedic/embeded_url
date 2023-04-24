@@ -66,7 +66,11 @@ export default function Sample(props) {
           onChange={handlecountry}
           name="country"
           defaultValue={selectedcountry}
-          className={`${style.select2} w-full dark:text-zinc-200 text-zinc-800 border-zinc-300 dark:border-zinc-500 border-b px-1 py-2 bg-transparent`}
+          className={`${style.select2} ${
+            props.selectStyle
+              ? props.selectStyle
+              : "border-zinc-300 dark:border-zinc-500 border-b "
+          } w-full dark:text-zinc-200 text-zinc-800 px-1 py-2 bg-transparent`}
         >
           {country.map((item, i) => (
             <option value={item.country_name} key={i}>
@@ -78,7 +82,11 @@ export default function Sample(props) {
       <div className=" w-full ">
         <div
           style={{ padding: 0 }}
-          className={`border-b outline-none dark:text-white border-zinc-300 dark:border-zinc-500  w-full`}
+          className={`${
+            props.typeheadStyle
+              ? props.typeheadStyle
+              : " border-b border-zinc-300 dark:border-zinc-500 "
+          } outline-none dark:text-white  w-full`}
         >
           <AsyncTypeahead
             ref={typeahead}

@@ -24,6 +24,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { Loader2 } from "@/components/utils/loader";
 import { FetchApi } from "@/components/utils/fetchapi";
 import { TabUI } from "@/components/tabui/horoscopeTab";
+import Test2 from "../test2";
 
 export default function BirthReport({ userdata, handleForm }) {
   const [detail, setdetail] = useState({});
@@ -89,7 +90,14 @@ export default function BirthReport({ userdata, handleForm }) {
           </div>
 
           {/* profile data */}
-          <div className="py-0 dark:border-zinc-500 border-zinc-500 rounded max-w-4xl mx-auto w-full border">
+          <div className="py-0 max-w-md relative z-[1] overflow-hidden  dark:border-zinc-500 border-zinc-500  rounded-[10px] mx-auto w-full border">
+            <div className="w-full z-[-1] opacity-[0.2] h-full absolute  bg-[url('/natal/noise.png')] overflow-hidden bg-repeat" />
+            <div className="absolute z-[-1] dark:opacity-[1] opacity-[.6] top-0 right-0 w-full h-full">
+              <img
+                src="/natal/cta-glow-tr.svg"
+                className="w-full object-cover"
+              />
+            </div>
             <ProfileDetailCard2
               handleForm={handleForm}
               userDetail={userdata}
@@ -213,6 +221,7 @@ export default function BirthReport({ userdata, handleForm }) {
                 {active == "Planet Sign" && (
                   <Planet_sign_report data={tabResponse[active]} />
                 )}
+                {active == "PDF Download" && <Test2 />}
               </div>
             </>
           ) : (
@@ -234,6 +243,7 @@ const tabs = [
   "House Cusps Report",
   "Aspects Report",
   // "Natal House Cusp Report",
+  "PDF Download",
 ];
 
 const url = {
