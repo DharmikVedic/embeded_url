@@ -188,7 +188,7 @@ l-7 52 57 0 56 0 0 -49z m146 -3 c-4 -29 -8 -53 -9 -54 -1 0 -23 1 -49 4 l-48
   );
 }
 
-export function ProfileCard22({ userDetail, children }) {
+export function ProfileCard22({ userDetail, children, hidebtn }) {
   return (
     <div className="relative flex  flex-col gap-3 md:pb-7 pb-5 w-full  max-w-5xl mx-auto ">
       <h3 className="font-semibold  md:pb-0 pb-3  md:text-2xl text-xl text-zinc-800 dark:text-white">
@@ -323,21 +323,23 @@ l-7 52 57 0 56 0 0 -49z m146 -3 c-4 -29 -8 -53 -9 -54 -1 0 -23 1 -49 4 l-48
       </p>
       {children}
 
-      <button
-        onClick={() => {
-          handleForm("personality_report");
-        }}
-        className="absolute right-0  duration-100 ease-in hover:bg-white hover:text-zinc-800  text-zinc-500 dark:text-white p-1 rounded-full"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="h-4 w-4"
-          viewBox="0 0 20 20"
-          fill="currentColor"
+      {!hidebtn && (
+        <button
+          onClick={() => {
+            handleForm("personality_report");
+          }}
+          className="absolute right-0  duration-100 ease-in hover:bg-white hover:text-zinc-800  text-zinc-500 dark:text-white p-1 rounded-full"
         >
-          <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
-        </svg>
-      </button>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-4 w-4"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
+          </svg>
+        </button>
+      )}
     </div>
   );
 }

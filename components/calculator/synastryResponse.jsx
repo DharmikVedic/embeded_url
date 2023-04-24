@@ -50,11 +50,6 @@ export default function SynastryReport({ userdata }) {
 
   return (
     <>
-      <Head>
-        <title> Synastry Report</title>
-        <meta name="description" content="" />
-        <meta name="keywords" content="Synastry Report" />
-      </Head>
       <div className="min-h-screen w-full">
         <div className="flex flex-col gap-10 pb-10">
           <div className="max-w-4xl mx-auto ">
@@ -76,8 +71,29 @@ export default function SynastryReport({ userdata }) {
           )}
         </div>
 
-        <div className="py-0 dark:border-zinc-500 border-zinc-400 rounded max-w-4xl mx-auto w-full border">
+        <div className="py-0 max-w-lg relative  overflow-hidden  dark:border-zinc-500 border-zinc-500  rounded-[10px] mx-auto w-full border">
+          <button className="absolute cursor-pointer z-[1] duration-100 ease-in dark:hover:text-zinc-800 dark:hover:bg-white p-1.5 rounded-full dark:text-zinc-300 text-zinc-700  top-5 right-5">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="w-5 h-5"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125"
+              />
+            </svg>
+          </button>
+          <div className="w-full z-[-1] opacity-[0.2] h-full absolute  bg-[url('/natal/noise.png')] overflow-hidden bg-repeat" />
+          <div className="absolute z-[-1] dark:opacity-[1] opacity-[.6] top-0 right-0 w-full h-full">
+            <img src="/natal/cta-glow-tr.svg" className="w-full object-cover" />
+          </div>{" "}
           <ProfileDetailCard2
+            hidebtn={true}
             userDetail={reverseRequest(userdata)}
             link="/synastry-chart"
           />
@@ -136,7 +152,7 @@ export default function SynastryReport({ userdata }) {
 
 const tabs = ["Positions", "Aspects", "PDF Download"];
 
-function reverseRequest(data, partner) {
+export function reverseRequest(data, partner) {
   if (partner) {
     let maleDetail = {
       name: data.p_name,
@@ -175,8 +191,8 @@ export const SynastryOneFeture = (props) => {
     <div
       className={`flex  border-b border-zinc-400 dark:border-zinc-500 px-5 py-5  items-center gap-3`}
     >
-      <div className="md:flex-row text-[15px] flex-wrap flex-col  text-para flex gap-2">
-        <div className="flex gap-2 items-center">
+      <div className="md:flex-row  text-[15px] flex-wrap flex-col  text-para flex gap-2">
+        <div className="flex gap-2 dark:text-zinc-300 text-zinc-800 items-center">
           <Sign
             size="text-[25px] pr-1"
             color={PlanetColor[props.data.name.toLowerCase()]}
@@ -184,19 +200,19 @@ export const SynastryOneFeture = (props) => {
           />
           Your {props.data.name} is in{" "}
           <b
-            className={` py-[2px] px-3 rounded-full ${
+            className={` py-[2px] px-3 rounded-full text-zinc-800 ${
               SignBgColor[props.data.name.toLowerCase()]
             }`}
           >
             {getDMS(props.data.norm_degree)} {props.data.sign}
           </b>
         </div>
-        <div className="flex gap-2 items-center flex-wrap">
+        <div className="flex gap-2 items-center flex-wrap text-zinc-800 dark:text-zinc-300">
           and your partner's {props.data2.name} is in{" "}
           <b
             className={`${
               SignBgColor[props.data.name.toLowerCase()]
-            } py-[2px]  px-3 rounded-full`}
+            } py-[2px]  px-3 rounded-full text-zinc-800`}
           >
             {getDMS(props.data2.norm_degree)} {props.data2.sign}
           </b>

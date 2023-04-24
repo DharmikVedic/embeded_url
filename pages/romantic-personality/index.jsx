@@ -55,18 +55,20 @@ export default function TransitChart() {
             userdata={userData}
             handleForm={handleForm}
           />
-          <div className="md:mt-24 flex gap-4 flex-col items-center text-center bg-gradient-to-tr p-5 rounded-[10px] sm:max-w-[350px] w-full from-fuchsia-200 to-indigo-300">
-            <h2 className="font-semibold md:text-2xl text-xl">Daily Tarot</h2>
+          <div className="md:mt-24 flex gap-4 flex-col items-center text-center bg-gradient-to-tr p-5 md:p-7 rounded-[10px] sm:max-w-[350px] w-full from-rose-200 to-pink-100">
+            <h2 className="font-semibold md:text-2xl text-xl">
+              Free Birth Chart Calculator
+            </h2>
+            <img src="/imgs/birth-chart-wheel.svg" className="w-[150px] my-2" />
+
             <p className="md:text-base mb-1">
-              Start your day with this reading to get psyched for all the
-              possibilities.
+              Discover the key to your life path & personality
             </p>
-            <img src="/imgs/tarot-card.png" className="w-[150px]" />
             <button
               onClick={() => router.push("tarot")}
-              className="bg-white w-full px-10 md:text-lg py-2 rounded-md hover:bg-indigo-400"
+              className="bg-red-400 text-white capitalize w-full px-10 py-2 rounded-md hover:bg-red-500"
             >
-              Check Now
+              Calculate your birth chart
             </button>
           </div>
         </div>

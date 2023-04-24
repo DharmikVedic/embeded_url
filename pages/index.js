@@ -94,7 +94,7 @@ export default function HomePage() {
           Test your compatibility and find out how your love and work
           relationships rank with your partner, colleagues, friends and family.
         </p>
-        <div className="max-w-5xl md:gap-x-14 gap-5 mx-auto grid grid-cols-1 sm:grid-cols-2 md:py-14 py-14">
+        <div className="max-w-5xl md:gap-x-14 md:gap-10 gap-5 mx-auto grid grid-cols-1 sm:grid-cols-2 md:py-14 py-14">
           <CalculatorCard
             style="bg-gradient-to-br from-rose-400 to-transparent via-pink-400/60"
             title="Romantic Personality"
