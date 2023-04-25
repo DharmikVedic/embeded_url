@@ -264,7 +264,7 @@ const tabs = [
 ];
 
 const url = {
-  "Life Path": "lifepath_number",
+  Lifepath: "lifepath_number",
   Personality: "personality_number",
   Expression: "expression_number",
   "Soul Urge": "soul_urge_number",
