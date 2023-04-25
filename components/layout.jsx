@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 export default function Layout({ children }) {
-  const [localtheme, setloclatheme] = useState("light");
+  const [localtheme, setloclatheme] = useState("dark");
 
   useEffect(() => {
     if (typeof window !== "undefined") {
