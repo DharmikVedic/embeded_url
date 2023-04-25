@@ -7,9 +7,9 @@ export default function CalculatorCard({ title, desc, btn, link, style }) {
     <div className={`p-[2px] ${style} rounded-[10px]`}>
       <div
         onClick={() => router.push(link)}
-        className="bg-white dark:bg-c_light_dark cursor-pointer md:p-6 group p-5 rounded-[10px]"
+        className="bg-white h-full dark:bg-c_light_dark cursor-pointer md:p-6 group p-5 rounded-[10px]"
       >
-        <div className="flex flex-col gap-5 items-start">
+        <div className="h-full flex flex-col gap-5 justify-between items-start">
           <h2 className="font-semibold dark:text-white text-zinc-800 md:text-2xl text-xl">
             {title}
           </h2>
@@ -41,7 +41,7 @@ export default function CalculatorCard({ title, desc, btn, link, style }) {
 export function Button({ url }) {
   const router = useRouter();
   return (
-    <div className="absolute px-5 max-w-7xl mx-auto w-full left-1/2 -translate-x-1/2 top-16 md:top-10">
+    <div className="absolute px-5 max-w-7xl mx-auto w-full left-1/2 -translate-x-1/2 top-[5rem] md:top-20">
       <button
         onClick={() => router.push(url)}
         className=" dark:text-white dark:hover:text-blue-500 hover:text-blue-500 top-5 left-5 flex gap-1 items-center"

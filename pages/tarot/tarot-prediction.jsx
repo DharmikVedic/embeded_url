@@ -62,7 +62,7 @@ export default function TarotPrediction() {
         `}
       </style>
 
-      <div className="md:py-24 py-14">
+      <div className="md:py-20 py-14">
         <Button url="/tarot" />
         {loader ? (
           <Loader2 />

@@ -4,7 +4,7 @@ import React from "react";
 
 export default function TarotIndex() {
   return (
-    <div className="md:py-24 py-14 max-w-5xl mx-auto">
+    <div className="md:py-20 py-14 max-w-5xl mx-auto px-5">
       <Button url="/" />
       <div className="flex flex-col gap-14">
         <h1 className="md:text-5xl font-bold text-4xl text-center dark:text-white">
@@ -45,7 +45,7 @@ function TarotCard({ title, desc, button, img, bg, link }) {
   return (
     <Link href={link}>
       <div
-        className={`${bg} rounded-[10px] flex sm:flex-row flex-col gap-14 md:p-8 p-5`}
+        className={`${bg} rounded-[10px] flex sm:flex-row md:items-start items-center flex-col-reverse gap-5 md:gap-14 md:p-8 p-5`}
       >
         <div className="flex flex-col gap-5">
           <h2 className="md:text-2xl font-semibold text-xl">{title}</h2>
@@ -54,7 +54,7 @@ function TarotCard({ title, desc, button, img, bg, link }) {
             {button}
           </button>
         </div>
-        <div className="w-[200px]">
+        <div className="w-[150px] md:w-[200px]">
           <img src={img} className="w-full" />
         </div>
       </div>

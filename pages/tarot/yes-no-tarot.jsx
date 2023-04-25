@@ -47,7 +47,7 @@ export default function TarotCard2({ staticData }) {
           }
         `}
       </style>
-      <div className="md:py-28 py-20">
+      <div className="md:py-20 py-20">
         <Button url="/tarot" />
         {loader ? (
           <Loader2 />

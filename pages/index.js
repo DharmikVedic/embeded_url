@@ -45,7 +45,7 @@ export default function HomePage() {
           {signs.map((s, i) => (
             <DailySign2
               hidename={true}
-              extra="md:w-[80px] w-[50px] h-[50px] min-w-[55px] min-h-[55px] sm:min-w-[80px] md:min-h-[80px] h-[80px]"
+              extra="md:w-[80px] w-[55px] h-[55px] min-w-[55px] min-h-[55px] sm:min-w-[80px] md:min-h-[80px] h-[80px]"
               key={i}
               name={s}
             ></DailySign2>

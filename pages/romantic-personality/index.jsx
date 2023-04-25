@@ -47,7 +47,7 @@ export default function TransitChart() {
   };
 
   return (
-    <div className="px-5 bg-gradient-to-tl dark:from-transparent dark:to-transparent from-[#EDF1F4]/20 to-[#C3CBDC]/20 md:py-24 py-20 flex flex-col gap-14 items-center">
+    <div className="px-5 bg-gradient-to-tl dark:from-transparent dark:to-transparent from-[#EDF1F4]/20 to-[#C3CBDC]/20 md:py-24 py-14 flex flex-col gap-14 items-center">
       <Button url="/" />
       {Object.keys(userData).length > 0 ? (
         <div className="max-w-6xl mx-auto md:flex-row flex-col flex md:gap-14 gap-14 items-start">

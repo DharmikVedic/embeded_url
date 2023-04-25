@@ -67,7 +67,7 @@ export default function Layout({ children }) {
         </>
       )}
       <div className="spheres-wrapper   bg-[#f6fdff] dark:bg-[#222236] min-h-screen">
-        <div className="flex max-w-7xl items-center mx-auto w-full px-5 py-3 justify-between">
+        <div className="flex border-b border-zinc-300 md:dark:border-transparent dark:border-c_yellow/30 md:dark:bg-transparent dark:bg-c_light_dark/50 md:border-transparent max-w-7xl items-center mx-auto w-full px-5 py-5  justify-between">
           <div className="">
             <div className="w-full">
               <Link href="/">
