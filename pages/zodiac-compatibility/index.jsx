@@ -18,7 +18,7 @@ export default function ZodiacCompatibility() {
 
   const handleSubmit = useCallback(async () => {
     await API();
-  }, []);
+  }, [state]);
 
   const API = async () => {
     setLoader(true);
@@ -31,7 +31,7 @@ export default function ZodiacCompatibility() {
     }
   };
 
-  // console.log(state);
+  console.log(state);
 
   return (
     <>
