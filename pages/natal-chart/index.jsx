@@ -47,7 +47,7 @@ export default function NatalChart() {
   };
 
   return (
-    <div className="px-5 bg-gradient-to-tl dark:from-transparent dark:to-transparent from-[#EDF1F4]/20 to-[#C3CBDC]/20 md:py-24 py-20 flex flex-col gap-14 items-center">
+    <div className="px-5 bg-gradient-to-tl dark:from-transparent dark:to-transparent from-[#EDF1F4]/20 to-[#C3CBDC]/20 md:py-24 py-14 flex flex-col gap-14 items-center">
       <Button url="/" />
       {Object.keys(userData).length > 0 ? (
         <BirthReport handleForm={handleForm} userdata={userData} />

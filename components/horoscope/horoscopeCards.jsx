@@ -27,19 +27,19 @@ export default function HoroscopeCards() {
           <h2 className="font-semibold md:text-5xl dark:text-white text-4xl">
             Horoscopes
           </h2>
-          <p className="md:text-lg dark:text-zinc-300">
+          {/* <p className="md:text-lg dark:text-zinc-300">
             Unpack the mysteries of the universe with our horoscopes! Our cosmic
             guidance will help you prepare for what's to come.
-          </p>
+          </p> */}
         </div>
         <div className="flex md:flex-row items-center flex-col gap-14">
-          <div className="grid md:grid-cols-4 grid-cols-3 gap-6 md:gap-x-10 md:gap-y-5 w-full">
+          {/* <div className="grid md:grid-cols-4 grid-cols-3 gap-6 md:gap-x-10 md:gap-y-5 w-full">
             {signs.map((s, i) => (
               <DailySign2 key={i} name={s}></DailySign2>
             ))}
-          </div>
+          </div> */}
           <div className="w-full">
-            <div className="w-full mx-auto max-w-sm grid grid-cols-1 gap-6">
+            <div className="w-full mx-auto max-w-4xl grid sm:grid-cols-3 grid-cols-2 md:gap-7 gap-6">
               <DifferentHoroscopeCard
                 link="/horoscope/aries-daily-horoscope"
                 bg="bg-[#FDE68A]"
@@ -52,12 +52,12 @@ export default function HoroscopeCards() {
                 name="Monthly Horoscope"
               />
               <DifferentHoroscopeCard
+                extra="sm:col-span-1 col-span-2"
                 link="/zodiac-compatibility"
                 bg="bg-[#F993AB]"
                 name="Zodiac Compatibility"
               />
             </div>
-            {/* <DifferentHoroscopeCard name="Monthly Horoscope" /> */}
           </div>
         </div>
       </div>
@@ -65,28 +65,29 @@ export default function HoroscopeCards() {
   );
 }
 
-export const DailySign2 = ({ name }) => {
+export const DailySign2 = ({ name, extra, hidename }) => {
   const router = useRouter();
   return (
     <div
       onClick={() =>
         router.push(`/horoscope/${name.toLowerCase()}-daily-horoscope`)
       }
-      className="flex flex-col gap-2 items-center w-full"
+      className={`flex ${extra} flex-col gap-2 items-center w-full`}
     >
-      <div className="w-full rounded-full cursor-pointer p-[2px] bg-gradient-to-tr dark:from-rose-400 dark:to-orange-300 dark:via-[#2C2B46] from-rose-400 via-white to-orange-400 ">
-        <div className="group dark:bg-[#2C2B46] bg-white duration-150 ease-in hover:bg-gradient-to-tr from-rose-400 to-orange-400 rounded-full flex flex-col w-full justify-center p-4 sm:p-5 item-center ">
+      <div className="w-full h-full rounded-full cursor-pointer p-[2px] bg-gradient-to-tr dark:from-rose-400 dark:to-orange-300 dark:via-[#2C2B46] from-rose-400 via-white to-orange-400 ">
+        <div className="h-full group dark:bg-[#2C2B46] bg-white duration-150 ease-in hover:bg-gradient-to-tr from-rose-400 to-orange-400 rounded-full flex flex-col w-full justify-center p-2  sm:p-5 item-center ">
           <Sign
             name={name}
             color="dark:text-white group-hover:text-white text-zinc-800 mx-auto"
-            size="text-[35px] md:text-[40px]"
+            size="text-[25px] sm:text-[35px] md:text-[40px]"
           />
         </div>
       </div>
-
-      <p className="md:text-lg dark:text-zinc-100">
-        {name.charAt(0).toUpperCase() + name.substring(1)}
-      </p>
+      {!hidename && (
+        <p className="md:text-lg dark:text-zinc-100">
+          {name.charAt(0).toUpperCase() + name.substring(1)}
+        </p>
+      )}
     </div>
   );
 };
@@ -159,16 +160,20 @@ export function HoroscopeCard(props) {
   );
 }
 
-export function DifferentHoroscopeCard({ name, link, bg }) {
+export function DifferentHoroscopeCard({ name, link, bg, extra }) {
   const router = useRouter();
   return (
     <div
       onClick={() => router.push(link)}
-      className={`flex flex-col gap-5 cursor-pointer hover:scale-[1.04] duration-100 ease-in md:p-6 p-5 rounded-md ${bg}`}
+      className={`flex ${extra} flex-col gap-5 cursor-pointer hover:scale-[1.04] duration-100 ease-in md:p-6 p-5 rounded-[15px] ${bg}`}
     >
-      <h3 className="md:text-[1.5rem] text-xl">{name}</h3>
+      <h3 className="md:text-[1.5rem] font-medium text-lg sm:text-xl">
+        {name}
+      </h3>
       <div className="flex gap-3 items-center">
-        <h6 className="font-nunito text-zinc-700">Read More</h6>
+        <h6 className="font-nunito sm:text-base text-sm text-zinc-700">
+          Read More
+        </h6>
         <span>
           <svg
             xmlns="http://www.w3.org/2000/svg"

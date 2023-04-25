@@ -1,7 +1,11 @@
+import Link from "next/link";
 import React, { useEffect, useState } from "react";
+import MobileMenu1 from "./menu/mobilemenu";
+import { dropdownMenu } from "./jsonData/menu";
 
 export default function Layout({ children }) {
   const [localtheme, setloclatheme] = useState("light");
+  const [mobileMenu, setMobileMenu] = useState(false);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -23,6 +27,10 @@ export default function Layout({ children }) {
       localStorage.theme = "light";
     }
     document.documentElement.classList.toggle("dark");
+  };
+
+  const handlemenu = () => {
+    setMobileMenu((prev) => !prev);
   };
 
   return (
@@ -48,22 +56,65 @@ export default function Layout({ children }) {
           }
         `}
       </style>
-      <div className=" fixed top-5 md:top-7 max-w-max w-full  right-5 md:right-7 z-[2]  flex justify-end">
-        <label
-          htmlFor="toggle-example"
-          className="flex items-center cursor-pointer relative "
-        >
-          <input
-            checked={localtheme === "dark"}
-            onChange={handleTheme}
-            type="checkbox"
-            id="toggle-example"
-            className="sr-only switcher "
+      {mobileMenu && (
+        <>
+          <div className="" />
+          <MobileMenu1
+            Mactive={mobileMenu}
+            passclose={handlemenu}
+            data={dropdownMenu}
           />
-          <div className="toggle-bg bg-gray-200 border-2 border-gray-200 h-6 w-11 rounded-full" />
-        </label>
-      </div>
-      <div className="spheres-wrapper  bg-[#f6fdff] dark:bg-[#222236] min-h-screen">
+        </>
+      )}
+      <div className="spheres-wrapper   bg-[#f6fdff] dark:bg-[#222236] min-h-screen">
+        <div className="flex max-w-7xl items-center mx-auto w-full px-5 py-3 justify-between">
+          <div className="">
+            <div className="w-full">
+              <Link href="/">
+                <img
+                  src={`/imgs/${
+                    localtheme == "dark" ? "logo-white.svg" : "logo-black.svg"
+                  }`}
+                  className="w-[150px]"
+                />
+              </Link>
+            </div>
+          </div>
+          <div className="">
+            <label
+              htmlFor="toggle-example"
+              className="flex items-center cursor-pointer relative "
+            >
+              <input
+                checked={localtheme === "dark"}
+                onChange={handleTheme}
+                type="checkbox"
+                id="toggle-example"
+                className="sr-only switcher"
+              />
+              <div className="toggle-bg bg-gray-200 border-2 border-gray-200 h-6 w-11 rounded-full" />
+            </label>
+          </div>
+          <button
+            onClick={handlemenu}
+            className="dark:text-white text-zinc-800"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="w-7 h-7"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+              />
+            </svg>
+          </button>
+        </div>
         {children}
       </div>
     </>

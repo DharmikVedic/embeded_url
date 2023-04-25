@@ -9,13 +9,13 @@ export default function CalculatorCard({ title, desc, btn, link, style }) {
         onClick={() => router.push(link)}
         className="bg-white dark:bg-c_light_dark cursor-pointer md:p-6 group p-5 rounded-[10px]"
       >
-        <div className="flex flex-col gap-3 items-start">
+        <div className="flex flex-col gap-5 items-start">
           <h2 className="font-semibold dark:text-white text-zinc-800 md:text-2xl text-xl">
             {title}
           </h2>
-          <p className="font-nunito  dark:text-zinc-300 text-zinc-700  md:text-lg">
+          {/* <p className="font-nunito  dark:text-zinc-300 text-zinc-700  md:text-lg">
             {desc}
-          </p>
+          </p> */}
           <button className="ml-auto duration-100 ease-in font-semibold group-hover:bg-white group-hover:text-zinc-800 dark:text-white border border-current rounded-full p-2">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -41,7 +41,7 @@ export default function CalculatorCard({ title, desc, btn, link, style }) {
 export function Button({ url }) {
   const router = useRouter();
   return (
-    <div className="absolute px-5 max-w-7xl mx-auto w-full left-1/2 -translate-x-1/2 top-4 md:top-10">
+    <div className="absolute px-5 max-w-7xl mx-auto w-full left-1/2 -translate-x-1/2 top-16 md:top-10">
       <button
         onClick={() => router.push(url)}
         className=" dark:text-white dark:hover:text-blue-500 hover:text-blue-500 top-5 left-5 flex gap-1 items-center"

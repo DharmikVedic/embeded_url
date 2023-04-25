@@ -14,7 +14,7 @@ export function IconCard({
   return (
     <Link href={link} legacyBehavior>
       <a
-        className={`${bg} rounded-[5px] group duration-100 ease-linear group md:p-7 p-5 flex flex-col  gap-5 justify-between cursor-pointer w-full`}
+        className={`${bg} rounded-[15px] group duration-100 ease-linear group md:p-7 p-5 flex flex-col  gap-5 justify-between cursor-pointer w-full`}
       >
         <div className={`flex gap-9 justify-between w-full items-center`}>
           <h6
@@ -24,12 +24,12 @@ export function IconCard({
           >
             {text}
           </h6>
-          <span
+          {/* <span
             dangerouslySetInnerHTML={{ __html: img }}
             className="w-[40px] text-light_bg group-hover:text-bg_dark  sm:w-[33px] sm:min-w-[33px] mt-[5px]"
-          ></span>
+          ></span> */}
         </div>
-        <p className="text-para group-hover:text-bg_dark_1">{desc}</p>
+        {/* <p className="text-para group-hover:text-bg_dark_1">{desc}</p> */}
         <button
           className={` ml-auto group-hover:text-bg_dark bg-white rounded-full p-2 sm:ml-auto  cursor-pointer  `}
         >

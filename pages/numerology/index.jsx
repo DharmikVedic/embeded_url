@@ -197,7 +197,7 @@ export default function Numerlogy() {
                     />
                     <FavorableTable
                       bg="bg-gradient-to-r from-indigo-400/80 to-indigo-300"
-                      name="Subconscious Self Number"
+                      name="Challenge Number"
                       color="bg-gradient-to-r from-indigo-200 to-indigo-300"
                       value={response?.subconscious_self_number}
                     />
