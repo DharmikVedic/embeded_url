@@ -5,17 +5,26 @@ import {
 } from "../../components/calculator/utils";
 
 import { PlanetCard2 } from "../../components/calculator/planetCards";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Loader2 } from "@/components/utils/loader";
 import { FetchApi } from "@/components/utils/fetchapi";
 import { TabUI } from "@/components/tabui/horoscopeTab";
 import { mL } from "../utils/date";
+import Test2 from "@/pages/test2";
+import {
+  SolarReturnAspectReport,
+  SolarReturnPlanetReport,
+} from "./extraCalculatorCard";
 
 export default function SolarReturnReport({ userdata, handleForm }) {
   const [detail, setdetail] = useState({});
   const [chartlocation, setchartlocation] = useState({});
+  const [tabResponse, setTabResponse] = useState({
+    "SR Planet Report": {},
+    "SR Aspects Report": {},
+  });
 
-  const [active, setActive] = useState("Planets");
+  const [active, setActive] = useState("SR Planets");
 
   const [svg, setsvg] = useState(null);
 
@@ -65,8 +74,19 @@ export default function SolarReturnReport({ userdata, handleForm }) {
   };
 
   const handleActive = (val) => {
+    if (url[val]) {
+      tabCallback(url[val], val);
+    }
     setActive(val);
   };
+
+  const tabCallback = useCallback(async (tab, key) => {
+    const ApiCall = await FetchApi({
+      apiName: tab,
+      userData: userdata,
+    });
+    setTabResponse((prev) => ({ ...prev, [key]: ApiCall }));
+  }, []);
 
   return (
     <>
@@ -79,8 +99,31 @@ export default function SolarReturnReport({ userdata, handleForm }) {
           </div>
 
           {/* profile data */}
-          <div className="py-0 dark:border-zinc-500 border-zinc-400 rounded max-w-4xl mx-auto w-full border">
+          <div className="py-0 relative z-[1] max-w-lg dark:border-zinc-500 border-zinc-400 rounded max-w-4xl mx-auto w-full border">
+            <div className="w-full z-[-1] opacity-[0.2] h-full absolute  bg-[url('/natal/noise.png')] overflow-hidden bg-repeat" />
+            <div className="absolute z-[-1] dark:opacity-[1] opacity-[.6] top-0 right-0 w-full h-full">
+              <img
+                src="/natal/cta-glow-tr.svg"
+                className="w-full object-cover"
+              />
+            </div>
+            <button
+              onClick={() => {
+                handleForm("solar");
+              }}
+              className="duration-100 ease-in hover:bg-white hover:text-zinc-800 dark:hover:text-zinc-800  text-zinc-500 dark:text-white p-1 rounded-full absolute top-5 right-5 z-[2]"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-4 w-4"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
+              </svg>
+            </button>
             <ProfileDetailCard2
+              hidebtn={true}
               handleForm={handleForm}
               userDetail={userdata}
               link="/"
@@ -246,7 +289,7 @@ l-7 52 57 0 56 0 0 -49z m146 -3 c-4 -29 -8 -53 -9 -54 -1 0 -23 1 -49 4 l-48
             <>
               <div className="pt-10  md:pt-14">
                 <>
-                  {active === "Planets" && (
+                  {active === "SR Planets" && (
                     <PlanetCard2
                       title="Solar Return Planets"
                       desc="The planets represent energies and cosmic forces that can manifest in
@@ -259,7 +302,7 @@ l-7 52 57 0 56 0 0 -49z m146 -3 c-4 -29 -8 -53 -9 -54 -1 0 -23 1 -49 4 l-48
                     />
                   )}
                 </>
-                {active === "Houses" && (
+                {active === "SR Houses" && (
                   <PlanetHouse
                     title="Solar Return Houses"
                     desc=" The planets represent energies and cosmic forces that can be utilized
@@ -271,7 +314,7 @@ l-7 52 57 0 56 0 0 -49z m146 -3 c-4 -29 -8 -53 -9 -54 -1 0 -23 1 -49 4 l-48
                     detail={detail.houses}
                   />
                 )}
-                {active === "Aspects" && (
+                {active === "SR Aspects" && (
                   <div className="md:pb-20 pb-14">
                     <AspectCard
                       title="Solar Return Aspect"
@@ -285,6 +328,12 @@ l-7 52 57 0 56 0 0 -49z m146 -3 c-4 -29 -8 -53 -9 -54 -1 0 -23 1 -49 4 l-48
                     />
                   </div>
                 )}
+                {active === "SR Aspects Report" && (
+                  <SolarReturnAspectReport data1={tabResponse[active]} />
+                )}
+                {active === "SR Planet Report" && (
+                  <SolarReturnPlanetReport data1={tabResponse[active]} />
+                )}
                 {active == "PDF Download" && <Test2 />}
               </div>
             </>
@@ -297,4 +346,16 @@ l-7 52 57 0 56 0 0 -49z m146 -3 c-4 -29 -8 -53 -9 -54 -1 0 -23 1 -49 4 l-48
   );
 }
 
-const tabs = ["Planets", "Houses", "Aspects", "PDF Download"];
+const tabs = [
+  "SR Planets",
+  "SR Houses",
+  "SR Aspects",
+  "SR Planet Report",
+  "SR Aspects Report",
+  "PDF Download",
+];
+
+const url = {
+  "SR Planet Report": "solar_return_planet_report",
+  "SR Aspects Report": "solar_return_aspects_report",
+};

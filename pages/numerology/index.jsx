@@ -1,10 +1,17 @@
+import {
+  Challange,
+  Expression,
+  LifePath,
+  Pesonality,
+} from "@/components/calculator/numerologyResponse";
 import { Button } from "@/components/cards/calculatorCard";
 import useForm from "@/components/context/useForm";
 import NumerologyForm from "@/components/form/numerologyForm";
+import { TabUI } from "@/components/tabui/horoscopeTab";
 import { FetchApi } from "@/components/utils/fetchapi";
 import { Loader2 } from "@/components/utils/loader";
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 
 export default function Numerlogy() {
   const router = useRouter();
@@ -15,11 +22,17 @@ export default function Numerlogy() {
     year: "",
   };
   const { numerology, adduserdata, deleteuserdata } = useForm();
+  const [active, setActive] = useState("Daily Numerology");
 
   const [loader, setLoader] = useState(false);
   const [userData, setUserData] = useState(initialValue);
   const [response, setResponse] = useState(null);
-
+  const [tabResponse, setTabResponse] = useState({
+    Lifepath: {},
+    Personality: {},
+    Expression: {},
+    "Challenge Numbers": {},
+  });
   useEffect(() => {
     const { asPath } = router;
     const splitDate = asPath.split("?");
@@ -43,6 +56,7 @@ export default function Numerlogy() {
   const handleData = (data) => {
     adduserdata({ numerology: data });
     fetchdata(data);
+    setUserData(data);
   };
 
   const handleForm = (val) => {
@@ -59,6 +73,24 @@ export default function Numerlogy() {
     setResponse(ApiCall ? ApiCall : null);
     setLoader(false);
   };
+
+  const handleActive = (val) => {
+    if (url[val]) {
+      tabCallback(url[val], val);
+    }
+    setActive(val);
+  };
+
+  const tabCallback = useCallback(
+    async (tab, key) => {
+      const ApiCall = await FetchApi({
+        apiName: tab,
+        userData: userData,
+      });
+      setTabResponse((prev) => ({ ...prev, [key]: ApiCall }));
+    },
+    [userData]
+  );
 
   return (
     <div className="md:py-28 py-20 px-5">
@@ -92,7 +124,17 @@ export default function Numerlogy() {
             </div>
           ) : (
             <div className="flex flex-col gap-14 w-full">
-              <div className="flex max-w-3xl mx-auto border-b border-light_bg/50  w-full pb-10 gap-6  items-start">
+              <h1 className="font-bold md:text-5xl text-4xl text-center dark:text-white text-zinc-800">
+                Numerology Prediction
+              </h1>
+              <div className="flex max-w-md overflow-hidden relative z-[1] mx-auto border border-zinc-300 dark:border-zinc-500 rounded-[10px] md:p-7 p-5  w-full gap-6  items-start">
+                <div className="w-full z-[-1] opacity-[0.2] h-full absolute  bg-[url('/natal/noise.png')] top-0 left-0 overflow-hidden bg-repeat" />
+                <div className="absolute z-[-1] dark:opacity-[1] opacity-[.6] top-0 right-0 w-full h-full">
+                  <img
+                    src="/natal/cta-glow-tr.svg"
+                    className="w-full object-cover"
+                  />
+                </div>
                 <div className="flex flex-col gap-4">
                   <h6 className=" text-zinc-800 dark:text-zinc-200 md:text-lg">
                     {response?.name}
@@ -105,7 +147,7 @@ export default function Numerlogy() {
                   onClick={() => {
                     handleForm("numerology");
                   }}
-                  className="duration-100 ease-in hover:bg-white hover:text-zinc-800  text-zinc-500 dark:text-white p-1 rounded-full"
+                  className="duration-100 ease-in hover:bg-white dark:hover:text-zinc-800 hover:text-zinc-800  text-zinc-500 dark:text-white p-1 rounded-full"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -117,40 +159,65 @@ export default function Numerlogy() {
                   </svg>
                 </button>
               </div>
-              <div className="max-w-3xl mx-auto flex flex-col gap-5 ">
-                <FavorableTable
-                  name="Life path number"
-                  color="bg-gradient-to-r from-blue-200 to-blue-300"
-                  desc={`Your life path number is ${response?.lifepath_number}. It represents both the situation and opportunities that are attracted to you as the result of your actions.`}
-                  value={response?.lifepath_number}
-                />
-                <FavorableTable
-                  name="Personality Number"
-                  color="bg-gradient-to-r from-pink-200 to-pink-300"
-                  desc={`Your Personality number also called as Persona is ${response?.personality_number}. Personality Number is compliment to the inner aspect of the self.`}
-                  value={response?.personality_number}
-                />
-                <FavorableTable
-                  name="Expression Number"
-                  color="bg-gradient-to-r from-purple-200 to-purple-300"
-                  desc={`Your Expression Number or Total Name Number is ${response?.expression_number}. It describes the magic that you bring into the world.`}
-                  value={response?.expression_number}
-                />
-                <FavorableTable
-                  name="Challenge Numbers"
-                  color="bg-gradient-to-r from-red-200 to-red-300"
-                  value={response?.challenge_numbers.join(",")}
-                />
-                <FavorableTable
-                  name=" Soul Urge Number "
-                  color="bg-gradient-to-r from-yellow-100 to-yellow-300"
-                  value={response?.subconscious_self_number}
-                />
-                <FavorableTable
-                  name="Subconscious Self Number"
-                  color="bg-gradient-to-r from-indigo-200 to-indigo-300"
-                  value={response?.subconscious_self_number}
-                />
+              <div className="max-w-3xl w-full mx-auto flex flex-col gap-10">
+                <TabUI active={active} handleTime={handleActive} tabs={tabs} />
+                {active == "Daily Numerology" && (
+                  <div className="w-full flex flex-col gap-5 ">
+                    <FavorableTable
+                      bg="bg-gradient-to-r from-blue-400/80 to-blue-300"
+                      name="Life path number"
+                      color="bg-gradient-to-r from-blue-200 to-blue-300"
+                      desc={`Your life path number is ${response?.lifepath_number}. It represents both the situation and opportunities that are attracted to you as the result of your actions.`}
+                      value={response?.lifepath_number}
+                    />
+                    <FavorableTable
+                      name="Personality Number"
+                      bg="bg-gradient-to-r from-pink-400/80 to-pink-300"
+                      color="bg-gradient-to-r from-pink-200 to-pink-300"
+                      desc={`Your Personality number also called as Persona is ${response?.personality_number}. Personality Number is compliment to the inner aspect of the self.`}
+                      value={response?.personality_number}
+                    />
+                    <FavorableTable
+                      name="Expression Number"
+                      bg="bg-gradient-to-r from-purple-400/80 to-purple-300"
+                      color="bg-gradient-to-r from-purple-200 to-purple-300"
+                      desc={`Your Expression Number or Total Name Number is ${response?.expression_number}. It describes the magic that you bring into the world.`}
+                      value={response?.expression_number}
+                    />
+                    <FavorableTable
+                      name="Challenge Numbers"
+                      color="bg-gradient-to-r from-red-200 to-red-300"
+                      value={response?.challenge_numbers.join(",")}
+                    />
+                    <FavorableTable
+                      name=" Soul Urge Number "
+                      bg="bg-gradient-to-r from-yellow-400/80 to-yellow-300"
+                      color="bg-gradient-to-r from-yellow-100 to-yellow-300"
+                      value={response?.subconscious_self_number}
+                    />
+                    <FavorableTable
+                      bg="bg-gradient-to-r from-indigo-400/80 to-indigo-300"
+                      name="Subconscious Self Number"
+                      color="bg-gradient-to-r from-indigo-200 to-indigo-300"
+                      value={response?.subconscious_self_number}
+                    />
+                  </div>
+                )}
+                {active == "Lifepath" && (
+                  <LifePath data={tabResponse[active]} />
+                )}
+                {active == "Personality" && (
+                  <Pesonality data={tabResponse[active]} />
+                )}
+                {active == "Expression" && (
+                  <Expression data={tabResponse[active]} />
+                )}
+                {/* {active == "Soul Urge" && (
+                  <SoulUrge data={tabResponse[active]} />
+                )} */}
+                {active == "Challenge Numbers" && (
+                  <Challange data={tabResponse[active]} />
+                )}
               </div>
             </div>
           )}
@@ -164,7 +231,7 @@ export function FavorableTable(props) {
   const color = props.color || "";
   return (
     <div
-      className={`${color} flex rounded-[10px] md:p-10 p-5 text-left justify-between text-sm`}
+      className={`${color} relative overflow-hidden z-[1] flex rounded-[10px] md:p-10 p-5 text-left justify-between text-sm`}
     >
       <div className="flex flex-col gap-4">
         <h6 className=" font-semibold text-gray-800 md:text-2xl text-xl w-full">
@@ -177,12 +244,32 @@ export function FavorableTable(props) {
           ></p>
         )}
       </div>
+      <div
+        className={`${props.bg} z-[-1] absolute w-[150px] rounded-full h-[150px] right-[-60px] top-[-60px] sm:right-[-30px] sm:top-[-30px]`}
+      ></div>
       <p className="text-center md:text-4xl text-2xl sm:text-3xl text-gray-800">
         {props.value}
       </p>
     </div>
   );
 }
+
+const tabs = [
+  "Daily Numerology",
+  "Lifepath",
+  "Personality",
+  "Expression",
+  "Soul Urge",
+  "Challenge Numbers",
+];
+
+const url = {
+  "Life Path": "lifepath_number",
+  Personality: "personality_number",
+  Expression: "expression_number",
+  "Soul Urge": "soul_urge_number",
+  "Challenge Numbers": "challenge_numbers",
+};
 
 export const Callculatedate = (d) => {
   const s = d.split("-");

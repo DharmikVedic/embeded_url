@@ -39,7 +39,7 @@ export default function HoroscopeSlug({ slug }) {
         daily: "sun_sign_prediction/daily/",
         next: "sun_sign_prediction/daily/next/",
         monthly: "horoscope_prediction/monthly/",
-        yesterday: "horoscope_prediction/daily/previous/",
+        yesterday: "sun_sign_prediction/daily/previous/",
       };
       const Dailyapi = { apiName: `${link[data[1]]}${data[0]}` };
       const Dailyresponse = await FetchApi({ ...Dailyapi });
@@ -75,49 +75,39 @@ export default function HoroscopeSlug({ slug }) {
               handleTime={handleTime}
               tabs={tab}
             />
-            {active.time === "yesterday" ? (
-              <>
-                {Object.keys(response).length !== 0 && !loader ? (
-                  <YesterdayHoroscopeCard data={response} />
-                ) : (
-                  <Loader2 />
-                )}
-              </>
-            ) : (
-              <>
-                {active.time === "monthly" ? (
-                  <>
-                    {Object.keys(response).length !== 0 && !loader ? (
-                      <MonthlyHoroscopeComponent data={response} />
-                    ) : (
-                      <Loader2 />
-                    )}
-                  </>
-                ) : (
-                  <>
-                    {active.time === "weekly" ? (
-                      <>
-                        {Object.keys(response).length !== 0 && !loader ? (
-                          <WeeklyHoroscopeComponent data={response} />
-                        ) : (
-                          <Loader2 />
-                        )}
-                      </>
-                    ) : (
-                      <>
-                        {Object.keys(response).length !== 0 && !loader ? (
-                          <div className="flex flex-col gap-10">
-                            <CommonCardPage data={response} />
-                          </div>
-                        ) : (
-                          <Loader2 />
-                        )}
-                      </>
-                    )}
-                  </>
-                )}
-              </>
-            )}
+            <>
+              {active.time === "monthly" ? (
+                <>
+                  {Object.keys(response).length !== 0 && !loader ? (
+                    <MonthlyHoroscopeComponent data={response} />
+                  ) : (
+                    <Loader2 />
+                  )}
+                </>
+              ) : (
+                <>
+                  {active.time === "weekly" ? (
+                    <>
+                      {Object.keys(response).length !== 0 && !loader ? (
+                        <WeeklyHoroscopeComponent data={response} />
+                      ) : (
+                        <Loader2 />
+                      )}
+                    </>
+                  ) : (
+                    <>
+                      {Object.keys(response).length !== 0 && !loader ? (
+                        <div className="flex flex-col gap-10">
+                          <CommonCardPage data={response} />
+                        </div>
+                      ) : (
+                        <Loader2 />
+                      )}
+                    </>
+                  )}
+                </>
+              )}
+            </>
           </div>
           <div
             className={`w-full md:max-w-[320px]  flex flex-col mt-8  gap-14`}
@@ -184,8 +174,8 @@ function SplitLink(text) {
 }
 
 const tab = [
-  { name: "Today", link: "daily" },
   { name: "Yesterday", link: "yesterday" },
+  { name: "Today", link: "daily" },
   { name: "Tommorrow", link: "next" },
   { name: "Monthly", link: "monthly" },
 ];

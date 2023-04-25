@@ -35,7 +35,6 @@ export default function BirthReport({ userdata, handleForm }) {
     "Aspects Report": {},
   });
   const [active, setActive] = useState("Key Points");
-  const [loader, setLoader] = useState(false);
   const [svg, setsvg] = useState();
 
   useEffect(() => {
@@ -70,13 +69,11 @@ export default function BirthReport({ userdata, handleForm }) {
   };
 
   const tabCallback = useCallback(async (tab, key) => {
-    setLoader(true);
     const ApiCall = await FetchApi({
       apiName: tab,
       userData: userdata,
     });
     setTabResponse((prev) => ({ ...prev, [key]: ApiCall }));
-    setLoader(false);
   }, []);
 
   return (

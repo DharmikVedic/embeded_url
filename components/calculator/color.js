@@ -131,6 +131,8 @@ export const typeTextColor = {
   quintile: "text-indigo-400",
 };
 export const typebgColor = {
+  "semi sextile": "bg-lime-200",
+  "semi square": "bg-pink-200",
   square: "bg-sky-200 ",
   trine: "bg-pink-200",
   sextile: "bg-orange-200",

@@ -11,7 +11,13 @@ import {
   subDays,
 } from "./utils";
 import { TransitProfileCard } from "./planetCards";
-import { SignBgColor, SignColor, typeTextColor, typebgColor } from "./color";
+import {
+  PlanetColor,
+  SignBgColor,
+  SignColor,
+  typeTextColor,
+  typebgColor,
+} from "./color";
 import { Sign } from "../utils/gtmSign";
 import { TabUI } from "../tabui/horoscopeTab";
 import { numberSufix } from "../utils/date";
@@ -245,3 +251,109 @@ const OneFeture2 = (props) => {
     </div>
   );
 };
+
+export function SynastryHoroscope({ data1, male, female }) {
+  return (
+    <>
+      {Object.keys(data1).length === 0 ? (
+        <Loader2 />
+      ) : (
+        <div className="flex flex-col gap-5">
+          {data1?.map((item, i) => (
+            <div
+              className={`${
+                typebgColor[item.type.toLocaleLowerCase()]
+              } gap-5 md:p-10 p-5 rounded-[15px] flex flex-col items-start`}
+            >
+              <span
+                style={{ lineHeight: 1.2 }}
+                className="bg-white flex-wrap shadow-lg px-3 py-2 md:py-1 gap-y-1 rounded-[15px] gap-x-2 font-semibold flex items-center"
+              >
+                {male}
+                <Sign
+                  name={item.first}
+                  size="text-[25px]"
+                  color={PlanetColor[item.first.toLowerCase()]}
+                />
+                {item.first}
+                <Sign
+                  name={item.type}
+                  size="text-[25px]"
+                  color={typeTextColor[item.type.toLowerCase()]}
+                />
+                {item.type} {female}
+                <Sign
+                  name={item.second}
+                  size="text-[25px]"
+                  color={PlanetColor[item.second.toLowerCase()]}
+                />
+                {item.second}
+                <span className="text-xs py-[1px] text-sky-400 border border-current rounded-full px-2">
+                  Orb {item.orb}
+                </span>
+              </span>
+              {item.report.map((item, i) => (
+                <p key={i} className="text-zinc-700 sm:text-base text-sm">
+                  {item}
+                </p>
+              ))}
+            </div>
+          ))}
+        </div>
+      )}
+    </>
+  );
+}
+
+export function SynastryTable({ detail }) {
+  return (
+    <div className="w-full overflow-x-scroll noscrollbar">
+      <table className="dark:text-zinc-100 overflow-x-scroll min-w-[500px] max-w-[600px] mx-auto w-full border border-sky-400/40  text-zinc-800 table">
+        <thead className="">
+          <tr className="dark:bg-sky-500 bg-sky-200 font-semibold">
+            <th>Your planet</th>
+            <th>Aspects</th>
+            <th>Partner planet</th>
+            <th>Orb</th>
+          </tr>
+        </thead>
+        <tbody className="divide-y divide-blue-400/40">
+          {synastryTableFilter(detail).map((item, i) => (
+            <tr key={i}>
+              <td className="md:text-base text-sm">
+                <Sign
+                  size="text-[25px] pr-1"
+                  color={`${PlanetColor[item.first.toLowerCase()]}`}
+                  name={item.first}
+                />{" "}
+                {item.first}
+              </td>
+              <td className="md:text-base text-sm">
+                <Sign
+                  size="text-[25px] pr-1"
+                  color={`${typeTextColor[item.type.toLowerCase()]}`}
+                  name={item.type}
+                />{" "}
+                {item.type}
+              </td>
+              <td className="md:text-base text-sm">
+                <Sign
+                  size="text-[25px] pr-1"
+                  color={`${PlanetColor[item.second.toLowerCase()]}`}
+                  name={item.second}
+                />{" "}
+                {item.second}
+              </td>
+              <td className="md:text-base text-sm">{item.orb}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+export function synastryTableFilter(data) {
+  const d = data.filter((item) => Math.floor(item.orb) <= 5.0);
+  return d;
+}

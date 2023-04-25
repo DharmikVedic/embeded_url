@@ -186,7 +186,7 @@ export function General_ascendant_report({ data }) {
         <Loader2 />
       ) : (
         <div
-          className={`bg-[url('/imgs/pattern.png')] bg-cover bg-pink-300 gap-5 md:p-10 p-5 rounded-[15px] flex flex-col items-start`}
+          className={`bg-pink-300 gap-5 md:p-10 p-5 rounded-[15px] flex flex-col items-start`}
         >
           <span
             style={{ lineHeight: 1.2 }}
@@ -195,7 +195,12 @@ export function General_ascendant_report({ data }) {
             <Sign name={data.ascendant} color="text-zinc-800" />
             {data.ascendant} Rising
           </span>
-          <p className="text-zinc-700 sm:text-base text-sm">{data.report}</p>
+          {divideParagrahIntoSubPara(data.report, 60).map((item, i) => (
+            <p key={i} className="text-zinc-700 sm:text-base text-sm">
+              {item}
+            </p>
+          ))}
+          {/* <p className="text-zinc-700 sm:text-base text-sm">{data.report}</p> */}
         </div>
       )}
     </>
@@ -334,9 +339,14 @@ export function Planet_sign_report({ data }) {
                 />
                 {item.sign_name}
               </span>
-              <p className="text-zinc-700 sm:text-base text-sm">
+              {divideParagrahIntoSubPara(item.report, 65).map((text, i) => (
+                <p key={i} className="text-zinc-700 sm:text-base text-sm">
+                  {text}
+                </p>
+              ))}
+              {/* <p className="text-zinc-700 sm:text-base text-sm">
                 {item.report}
-              </p>
+              </p> */}
             </div>
           ))}
         </div>
@@ -355,4 +365,19 @@ function date(number) {
   } else if (number > 3) {
     return "th";
   }
+}
+
+export function divideParagrahIntoSubPara(para, maxWord) {
+  const maxWords = maxWord; // maximum number of words per sub-paragraph
+
+  const words = para.split(/\s+/);
+  const subParagraphs = [];
+
+  for (let i = 0; i < words.length; i += maxWords) {
+    // loop through words in increments of maxWords
+    subParagraphs.push(words.slice(i, i + maxWords).join(" "));
+    // add a sub-paragraph containing maxWords words to the array
+  }
+
+  return subParagraphs;
 }

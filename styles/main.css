@@ -68,4 +68,12 @@ label {
 }
 
  
+.table th {
+    padding: 20px 20px;
+    text-align: left;
+    font-size: 16px;
+}
 
+.table td {
+    padding: 15px 20px;
+}

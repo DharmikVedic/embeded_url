@@ -1,18 +1,21 @@
 import { Loader2 } from "../../components/utils/loader";
 import Head from "next/head";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { TabUI } from "../tabui/horoscopeTab";
 import { AspectCard, ProfileDetailCard2 } from "./utils";
 import { FetchApi } from "../utils/fetchapi";
 import { Sign, getDMS } from "../utils/gtmSign";
-import { PlanetColor, SignBgColor, SignColor, typeTextColor } from "./color";
+import { PlanetColor, SignBgColor, typeTextColor } from "./color";
+import { SynastryHoroscope, SynastryTable } from "./transitReport";
+import Test2 from "@/pages/test2";
 
 export default function SynastryReport({ userdata }) {
-  const [loader, setloader] = useState(true);
-  const [active, setActive] = useState("positions");
+  const [active, setActive] = useState("Positions");
   const [response, setResponse] = useState({});
   const [svg, setsvg] = useState(null);
-
+  const [tabResponse, setTabResponse] = useState({
+    "Synastry Report": {},
+  });
   useEffect(() => {
     if (userdata) {
       API(userdata);
@@ -31,11 +34,11 @@ export default function SynastryReport({ userdata }) {
       apiName: api,
       userData: {
         ...userdata,
+        aspects: "major",
         theme_name: "WHEEL_CHART_THEME_UPASTROLOGY",
       },
     });
     if (ApiDetail) {
-      setloader(false);
       if (api === "synastry_horoscope") {
         setResponse(ApiDetail);
       } else {
@@ -45,8 +48,19 @@ export default function SynastryReport({ userdata }) {
   };
 
   const handleActive = (val) => {
+    if (url[val]) {
+      tabCallback(url[val], val);
+    }
     setActive(val);
   };
+
+  const tabCallback = useCallback(async (tab, key) => {
+    const ApiCall = await FetchApi({
+      apiName: tab,
+      userData: userdata,
+    });
+    setTabResponse((prev) => ({ ...prev, [key]: ApiCall }));
+  }, []);
 
   return (
     <>
@@ -109,7 +123,7 @@ export default function SynastryReport({ userdata }) {
           <div className="max-w-4xl mx-auto mt-14">
             <TabUI active={active} handleTime={handleActive} tabs={tabs} />
 
-            {active == "positions" && (
+            {active == "Positions" && (
               <div className=" w-full pt-10 max-w-3xl mx-auto ">
                 <h2 className="font-semibold md:text-4xl text-3xl mb-10  dark:text-white">
                   Synastry Positions
@@ -117,6 +131,8 @@ export default function SynastryReport({ userdata }) {
                 <div className="border border-b-0 dark:border-zinc-500 border-zinc-400">
                   {response["first"].map((item, i) => (
                     <SynastryOneFeture
+                      female={userdata?.p_name}
+                      male={userdata?.s_name}
                       color={i}
                       data2={response["second"][i]}
                       key={i}
@@ -140,6 +156,15 @@ export default function SynastryReport({ userdata }) {
                 />
               </div>
             )}
+            {active == "Synastry Report" && (
+              <div className="mt-10">
+                <SynastryHoroscope
+                  female={userdata?.p_name}
+                  male={userdata?.s_name}
+                  data1={tabResponse[active]}
+                />
+              </div>
+            )}
             {active == "PDF Download" && <Test2 />}
           </div>
         ) : (
@@ -150,7 +175,10 @@ export default function SynastryReport({ userdata }) {
   );
 }
 
-const tabs = ["Positions", "Aspects", "PDF Download"];
+const tabs = ["Positions", "Aspects", "Synastry Report", "PDF Download"];
+const url = {
+  "Synastry Report": "synastry_horoscope_report",
+};
 
 export function reverseRequest(data, partner) {
   if (partner) {
@@ -193,12 +221,13 @@ export const SynastryOneFeture = (props) => {
     >
       <div className="md:flex-row  text-[15px] flex-wrap flex-col  text-para flex gap-2">
         <div className="flex gap-2 dark:text-zinc-300 text-zinc-800 items-center">
+          {props.male}
           <Sign
             size="text-[25px] pr-1"
             color={PlanetColor[props.data.name.toLowerCase()]}
             name={props.data.name}
           />
-          Your {props.data.name} is in{" "}
+          {props.data.name} is in{" "}
           <b
             className={` py-[2px] px-3 rounded-full text-zinc-800 ${
               SignBgColor[props.data.name.toLowerCase()]
@@ -208,7 +237,13 @@ export const SynastryOneFeture = (props) => {
           </b>
         </div>
         <div className="flex gap-2 items-center flex-wrap text-zinc-800 dark:text-zinc-300">
-          and your partner's {props.data2.name} is in{" "}
+          and {props.female}
+          <Sign
+            size="text-[25px] pr-1"
+            color={PlanetColor[props.data.name.toLowerCase()]}
+            name={props.data2.name}
+          />
+          {props.data2.name} is in{" "}
           <b
             className={`${
               SignBgColor[props.data.name.toLowerCase()]
@@ -233,7 +268,9 @@ export function SynastryAspectCard({ response, title, desc }) {
           {desc}
         </p>
       </div>
-      <div className="grid grid-cols-1 border md:grid-cols-2 border-t-0 border-zinc-400 dark:border-zinc-500  w-full text-zinc-700 dark:text-zinc-300">
+      <SynastryTable detail={response} />
+
+      {/* <div className="grid grid-cols-1 border md:grid-cols-2 border-t-0 border-zinc-400 dark:border-zinc-500  w-full text-zinc-700 dark:text-zinc-300">
         {response.map((item, i) => (
           <div
             key={i}
@@ -271,7 +308,7 @@ export function SynastryAspectCard({ response, title, desc }) {
             </div>
           </div>
         ))}
-      </div>
+      </div> */}
     </div>
   );
 }

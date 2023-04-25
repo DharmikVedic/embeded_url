@@ -92,7 +92,7 @@ export default function TarotCard2({ staticData }) {
               </>
             ) : (
               <div className="max-w-5xl mx-auto flex flex-col md:gap-24 gap-10  px-5">
-                <h1 className="md:text-4xl text-zinc-800 text-white text-3xl font-bold text-center">
+                <h1 className="md:text-4xl text-zinc-800 dark:text-white text-3xl font-bold text-center">
                   YES OR NO TAROT READING
                 </h1>
                 <div className="flex md:flex-row flex-col md:gap-14 gap-10 items-center ">

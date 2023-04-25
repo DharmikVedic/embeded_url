@@ -819,7 +819,17 @@
 // });
 
 import React from "react";
+import { FavorableTable } from "./numerology";
 
 export default function Sample() {
-  return <div>sample</div>;
+  return (
+    <div>
+      <FavorableTable
+        name="Life path number"
+        color="bg-gradient-to-r from-blue-200 to-blue-300"
+        desc={`Your life path number is 5. It represents both the situation and opportunities that are attracted to you as the result of your actions.`}
+        value={5}
+      />
+    </div>
+  );
 }
