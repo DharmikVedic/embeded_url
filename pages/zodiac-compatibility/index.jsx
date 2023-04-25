@@ -72,7 +72,7 @@ export default function ZodiacCompatibility() {
                       className={`w-full px-5 border border-zinc-300 dark:border-zinc-500 rounded-md dark:text-white text-zinc-800 py-2 ${style.select2}`}
                     >
                       {signs.map((item, i) => (
-                        <option key={i} value={item.toLowerCase}>
+                        <option key={i} value={item.toLowerCase()}>
                           {item}
                         </option>
                       ))}
@@ -99,7 +99,7 @@ export default function ZodiacCompatibility() {
                       className={`w-full px-5 border border-zinc-300 dark:border-zinc-500 rounded-md dark:text-white text-zinc-800 py-2 ${style.select2}`}
                     >
                       {signs.map((item, i) => (
-                        <option key={i} value={item.toLowerCase}>
+                        <option key={i} value={item.toLowerCase()}>
                           {item}
                         </option>
                       ))}
