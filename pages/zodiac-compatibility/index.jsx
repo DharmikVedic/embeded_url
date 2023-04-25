@@ -31,8 +31,6 @@ export default function ZodiacCompatibility() {
     }
   };
 
-  console.log(state);
-
   return (
     <>
       {loader ? (

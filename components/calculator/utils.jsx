@@ -188,7 +188,13 @@ l-7 52 57 0 56 0 0 -49z m146 -3 c-4 -29 -8 -53 -9 -54 -1 0 -23 1 -49 4 l-48
   );
 }
 
-export function ProfileCard22({ userDetail, children, hidebtn }) {
+export function ProfileCard22({
+  userDetail,
+  children,
+  hidebtn,
+  key,
+  handleForm,
+}) {
   return (
     <div className="relative flex  flex-col gap-3 md:pb-7 pb-5 w-full  max-w-5xl mx-auto ">
       <h3 className="font-semibold  md:pb-0 pb-3  md:text-2xl text-xl text-zinc-800 dark:text-white">
@@ -326,7 +332,7 @@ l-7 52 57 0 56 0 0 -49z m146 -3 c-4 -29 -8 -53 -9 -54 -1 0 -23 1 -49 4 l-48
       {!hidebtn && (
         <button
           onClick={() => {
-            handleForm("personality_report");
+            handleForm(key);
           }}
           className="absolute right-0  duration-100 ease-in hover:bg-white hover:text-zinc-800  text-zinc-500 dark:text-white p-1 rounded-full"
         >

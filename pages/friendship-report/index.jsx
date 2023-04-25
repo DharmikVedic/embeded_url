@@ -22,7 +22,7 @@ const formKeys = {
 };
 
 export default function TransitChart() {
-  const { romantic_personality, adduserdata, deleteuserdata } = useForm();
+  const { friendship_report, adduserdata, deleteuserdata } = useForm();
   const [userData, setUserdata] = useState({});
 
   const initialvalue = {
@@ -49,13 +49,13 @@ export default function TransitChart() {
   };
 
   useEffect(() => {
-    if (romantic_personality) {
-      setUserdata(romantic_personality);
+    if (friendship_report) {
+      setUserdata(friendship_report);
     }
-  }, [romantic_personality]);
+  }, [friendship_report]);
 
   const handleData = (data) => {
-    adduserdata({ romantic_personality: data });
+    adduserdata({ friendship_report: data });
   };
 
   const handleForm = (val) => {

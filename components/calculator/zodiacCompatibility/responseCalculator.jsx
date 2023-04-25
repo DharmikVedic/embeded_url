@@ -43,6 +43,7 @@ export function Romantic_personality_report_response({ userdata, handleForm }) {
           </h2>
           <div className="mt-5 dark:border-zinc-500 border-zinc-500 mx-auto w-full border-b">
             <ProfileCard22
+              key="romantic_personality"
               handleForm={handleForm}
               userDetail={userdata}
               link="/"
@@ -94,6 +95,7 @@ export function Karma_destiny_response({ userdata, handleForm }) {
           </h2>
           <div className="mt-5 dark:border-zinc-500 border-zinc-500 mx-auto w-full border-b">
             <ProfileCard22
+              key="karma_destiny"
               handleForm={handleForm}
               userDetail={reverseRequest(userdata)}
               link="/"
@@ -151,6 +153,7 @@ export function Friendship_report_response({ userdata, handleForm }) {
           </h2>
           <div className="mt-5 dark:border-zinc-500 border-zinc-500 mx-auto w-full border-b">
             <ProfileCard22
+              key={"friendship_report"}
               handleForm={handleForm}
               userDetail={reverseRequest(userdata)}
               link="/"
@@ -214,6 +217,7 @@ export function Personality_report_response({ userdata, handleForm }) {
           </h2>
           <div className="mt-5 dark:border-zinc-500 border-zinc-500 mx-auto w-full border-b">
             <ProfileCard22
+              key="personality_report"
               handleForm={handleForm}
               userDetail={userdata}
               link="/"
