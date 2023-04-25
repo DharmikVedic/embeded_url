@@ -45,15 +45,16 @@ export default function HoroscopeCards() {
                 bg="bg-[#FDE68A]"
                 name="Daily Horoscope"
               />
-              {/* <DifferentHoroscopeCard
-                link="/horoscope/aries-weekly-horoscope"
-                bg="bg-[#F4ABCE]"
-                name="Weekly Horoscope"
-              /> */}
+
               <DifferentHoroscopeCard
                 link="/horoscope/aries-monthly-horoscope"
                 bg="bg-[#61D4E7]"
                 name="Monthly Horoscope"
+              />
+              <DifferentHoroscopeCard
+                link="/zodiac-compatibility"
+                bg="bg-[#F993AB]"
+                name="Zodiac Compatibility"
               />
             </div>
             {/* <DifferentHoroscopeCard name="Monthly Horoscope" /> */}

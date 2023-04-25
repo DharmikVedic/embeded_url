@@ -4,6 +4,14 @@ import { Loader2 } from "@/components/utils/loader";
 import React, { useEffect, useState } from "react";
 import { ProfileCard22 } from "../utils";
 import { reverseRequest } from "../synastryResponse";
+// import CircularProgressBar from "@/components/animation/circularProgress";
+import PieChart from "@/components/animation/circularProgress";
+import dynamic from "next/dynamic";
+import { useRouter } from "next/router";
+const DynamicPieChart = dynamic(
+  () => import("@/components/animation/circularProgress"),
+  { ssr: false }
+);
 
 export function Romantic_personality_report_response({ userdata, handleForm }) {
   const [response, setResponse] = useState({});
@@ -277,5 +285,62 @@ function SignCalculator({ data, bg, color }) {
         <p className="text-right">{getDMS(data.normDegree)}</p>
       </div>
     </>
+  );
+}
+
+export function ZodiacPartnerCompatibility({ data }) {
+  const router = useRouter();
+  return (
+    <div className="max-w-5xl flex md:flex-row flex-col gap-24 items-start mx-auto">
+      <div className="w-full flex flex-col gap-10 sm:gap-14">
+        <h2
+          style={{ lineHeight: 1.3 }}
+          className="text-center md:text-4xl text-3xl font-bold dark:text-white text-zinc-800"
+        >
+          {data.your_sign} Love Relationship with {data?.your_partner_sign}
+        </h2>
+        <div className="flex md:max-w-md w-full rounded-[20px] p-8 md:p-10 bg-gradient-to-tl from-pink-400 to-red-300 items-center gap-10 mx-auto">
+          <span className="w-full sm:w-[100px]">
+            <img
+              className="w-10/12 sm:w-full"
+              src={`/zodiac/${data?.your_sign.toLowerCase()}.svg`}
+              alt={`${data?.your_sign}`}
+            />
+          </span>
+          <div className="bg-white p-5 flex justify-center items-center w-[60px] h-[60px] sm:w-[80px] sm:h-[80px] rounded-full">
+            <h6 className="md:text-2xl text-xl font-bold text-zinc-800">
+              {data?.compatibility_percentage}%
+            </h6>
+          </div>
+          {/* <DynamicPieChart /> */}
+          <span className="w-full sm:w-[100px]">
+            <img
+              className="w-10/12 sm:w-full"
+              src={`/zodiac/${data?.your_partner_sign.toLowerCase()}.svg`}
+              alt={`${data?.your_partner_sign}`}
+            />
+          </span>
+        </div>
+
+        {/* <CircularProgressBar value={data1.compatibility_percentage} max={100} /> */}
+        <p className="md:text-lg dark:text-zinc-300 text-zinc-700">
+          {data.compatibility_report}
+        </p>
+      </div>
+      <div className="md:mt-24 flex gap-4 flex-col items-center text-center bg-gradient-to-tr p-5 rounded-[10px] sm:max-w-[350px] w-full from-fuchsia-200 to-indigo-300">
+        <h2 className="font-semibold md:text-2xl text-xl">Daily Tarot</h2>
+        <p className="md:text-base mb-1">
+          Start your day with this reading to get psyched for all the
+          possibilities.
+        </p>
+        <img src="/imgs/tarot-card.png" className="w-[150px]" />
+        <button
+          onClick={() => router.push("tarot")}
+          className="bg-white w-full px-10 md:text-lg py-2 rounded-md hover:bg-indigo-400"
+        >
+          Check Now
+        </button>
+      </div>
+    </div>
   );
 }
