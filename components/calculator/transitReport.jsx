@@ -3,13 +3,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Loader2 } from "../../components/utils/loader";
 import { FetchApi } from "../utils/fetchapi";
-import {
-  CallculatedateforTransit,
-  CustomInput,
-  TimeForTransit,
-  addDays,
-  subDays,
-} from "./utils";
+import { CustomInput, TimeForTransit, addDays, subDays } from "./utils";
 import { TransitProfileCard } from "./planetCards";
 import {
   PlanetColor,
@@ -44,7 +38,7 @@ export default function Transitreport({ userdata, handleForm }) {
     };
     const ApiCall = await FetchApi({
       apiName: "natal_transits/daily",
-      userData: { ...userdata, ...obj },
+      userData: { ...userdata },
     });
     if (ApiCall) {
       setloader(false);
@@ -186,10 +180,11 @@ const tabs = ["Daily Transit", "PDF Download"];
 export const OneFeture = (props) => {
   return (
     <div
-      className={` px-5 py-2 text-zinc-700 dark:text-zinc-300  flex md:text-[16px] w-full  items-start gap-3`}
+      style={{ lineHeight: 1 }}
+      className={` px-5 py-3.5 text-zinc-700 dark:text-zinc-300  flex md:text-[16px] w-full  items-start gap-3`}
     >
       <Sign
-        size="text-[27px] md:text-[33px] md:mt-[3px] mt-[-3px]"
+        size="text-[25px] mt-[4px]"
         color={`${
           typeTextColor[props.data.aspect_type.toLowerCase()]
         } text-light_bg`}
