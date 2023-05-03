@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { BorderInput, BorderSelect, Label } from "./inpututils";
 import Sample from "./typehead";
+import { FetchApi } from "../utils/fetchapi";
 
 export default function Form2(props) {
   const date = new Date();
   const [error, seterror] = useState(null);
   const [reqdate, setreqdate] = useState(false);
   const [formValues, setFormValues] = useState(props.initialValues);
+  const [resetReq, setResetReq] = useState(false);
 
+  const [formErrors, setFormErrors] = useState({});
 
   const handleinput = (e) => {
     const { name, value } = e.target;
@@ -25,16 +28,18 @@ export default function Form2(props) {
   };
 
   const submitingform = async (e) => {
+    console.log(Object.keys(validate(formValues)));
+
     e.preventDefault();
     if (
       daysInMonth(formValues.month, formValues.year) < parseInt(formValues.day)
     ) {
       setreqdate(true);
       setFormValues((prev) => ({ ...prev, place: "" }));
+      setResetReq(true);
       seterror("Please enter correct date");
     } else if (Object.keys(validate(formValues)).length !== 0) {
       seterror("All detailed are must be filled");
-      // setFormValues(formValues);
     } else if (Object.keys(validate(formValues)).length === 0 && !reqdate) {
       let rea = Object.assign({}, formValues);
       props.passData(rea);
@@ -88,7 +93,7 @@ export default function Form2(props) {
           date: date,
         },
       });
-      return timezone.response.timezone;
+      return timezone.timezone;
     } else {
       return 5.5;
     }
@@ -108,6 +113,7 @@ export default function Form2(props) {
           ...prev,
           [solar ? "current_location" : "place"]: "",
         }));
+        setResetReq(true);
         seterror("Please enter correct Date");
       } else {
         const tzone = await Timezone(input);
@@ -315,7 +321,7 @@ export default function Form2(props) {
               { name: formValues?.place, country: formValues?.country },
             ]}
             passdata={handle}
-            clear={reqdate}
+            clear={resetReq}
           />
         </div>
 
@@ -377,7 +383,7 @@ export default function Form2(props) {
                 },
               ]}
               passdata={(val) => handle(val, true)}
-              clear={reqdate}
+              clear={resetReq}
             />
           </div>
         )}
